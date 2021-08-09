@@ -6,6 +6,13 @@ public class C206_CaseStudy {
 		// TODO Auto-generated method stub
 
 		ArrayList<Student> studList = new ArrayList<Student>();
+		ArrayList<CCAcategory> categoryList = new ArrayList<CCAcategory>();
+
+		categoryList.add(new CCAcategory("Little League Soccer"));
+		categoryList.add(new CCAcategory("LEGO expert"));
+		categoryList.add(new CCAcategory("Dig the ground"));
+		categoryList.add(new CCAcategory("Bakery"));
+		categoryList.add(new CCAcategory("Jewellry making"));
 		
 		int role = 0;
 		
