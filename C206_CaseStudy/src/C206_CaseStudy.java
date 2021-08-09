@@ -32,7 +32,8 @@ public class C206_CaseStudy {
 					
 					if (option == 1) {
 						// View all CCA + Category
-						System.out.println("View all CCA + Category");
+//						System.out.println("View all CCA + Category");
+						C206_CaseStudy.viewAllCategories(categoryList);
 					}
 					else if (option == 2 ) {
 						// Add CCA
@@ -44,11 +45,14 @@ public class C206_CaseStudy {
 					}
 					else if (option == 4) {
 						// Add CCA Category
-						System.out.println("Add CCA Category");
+//						System.out.println("Add CCA Category");
+						CCAcategory c = inputCategory();
+						C206_CaseStudy.addCategory(categoryList, c);
 					}
 					else if (option == 5) {
 						// Delete CCA Category
-						System.out.println("Delete CCA Category");
+//						System.out.println("Delete CCA Category");
+						C206_CaseStudy.deleteCategory(categoryList);
 					}
 					else if (option == 6){
 						// Quit CCA
@@ -340,13 +344,21 @@ public class C206_CaseStudy {
 		output += retrieveAllCategories(categoryList);
 		System.out.println(output);
 	}
+	
 	// =============== ADD CATEGORY ===============
-	private static void addCategory(ArrayList<CCAcategory> categoryList, CCAcategory cca) {
-		categoryList.add(cca);
+	private static CCAcategory inputCategory() {
+		String category = Helper.readString("Enter category > ");
+		CCAcategory c = new CCAcategory(category);
+		return c;
+	}
+	private static void addCategory(ArrayList<CCAcategory> categoryList, CCAcategory c) {
+		categoryList.add(c);
 		System.out.println("Category added");
 	}
+	
 	// =============== DELETE CATEGORY ===============
 	private static void deleteCategory(ArrayList<CCAcategory> categoryList) {
+		C206_CaseStudy.deleteCategory(categoryList);
 		String category = Helper.readString("Enter category > ");
 		for (int i = 0; i < categoryList.size(); i++) {
 			if (categoryList.get(i).getCategory() == category) {

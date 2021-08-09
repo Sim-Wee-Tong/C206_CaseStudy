@@ -11,6 +11,7 @@ public class CCAcategory {
 	private String category;
 	
 	public CCAcategory(String category) {
+		super();
 		this.category = category;
 	}
 	public String getCategory() {
