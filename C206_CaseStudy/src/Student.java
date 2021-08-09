@@ -4,9 +4,10 @@ public class Student {
 	private String StudentID;
 	private String Name;
 	private String Grade;
-	// private int Grade;
 	private String Classroom;
 	private String Teacher;
+	private String StudentEmail;
+	private int contactNum;
 	
 	public Student(String studentID, String name, String grade, String classroom, String teacher) {
 		super();
@@ -55,6 +56,22 @@ public class Student {
 
 	public void setTeacher(String teacher) {
 		Teacher = teacher;
+	}
+
+	public String getStudentEmail() {
+		return StudentEmail;
+	}
+
+	public void setStudentEmail(String studentEmail) {
+		StudentEmail = studentEmail;
+	}
+
+	public int getContactNum() {
+		return contactNum;
+	}
+
+	public void setContactNum(int contactNum) {
+		this.contactNum = contactNum;
 	}
 	
 }
