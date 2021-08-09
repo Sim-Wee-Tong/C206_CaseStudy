@@ -2,21 +2,23 @@
 public class Parent {
 
 	private int StudentID;
-	private String Name;
+	private String StudentName;
 	private String Grade;
 	private String Classroom;
 	private String Teacher;
+	private String ParentName;
 	private String ParentEmail;
 	private int ParentNum;
 	
-	public Parent(int studentID, String name, String grade, String classroom, String teacher, String parentEmail,
-			int parentNum) {
+	public Parent(int studentID, String studentName, String grade, String classroom, String teacher, String parentName,
+			String parentEmail, int parentNum) {
 		super();
 		StudentID = studentID;
-		Name = name;
+		StudentName = studentName;
 		Grade = grade;
 		Classroom = classroom;
 		Teacher = teacher;
+		ParentName = parentName;
 		ParentEmail = parentEmail;
 		ParentNum = parentNum;
 	}
@@ -29,12 +31,12 @@ public class Parent {
 		StudentID = studentID;
 	}
 
-	public String getName() {
-		return Name;
+	public String getStudentName() {
+		return StudentName;
 	}
 
-	public void setName(String name) {
-		Name = name;
+	public void setStudentName(String studentName) {
+		StudentName = studentName;
 	}
 
 	public String getGrade() {
@@ -59,6 +61,14 @@ public class Parent {
 
 	public void setTeacher(String teacher) {
 		Teacher = teacher;
+	}
+
+	public String getParentName() {
+		return ParentName;
+	}
+
+	public void setParentName(String parentName) {
+		ParentName = parentName;
 	}
 
 	public String getParentEmail() {
