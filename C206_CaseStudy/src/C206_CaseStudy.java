@@ -77,11 +77,12 @@ public class C206_CaseStudy {
 					}
 					else if (option == 2) {
 						// Add parent
-						System.out.println("Add parent");
+						Parent p = inputParent();
+						C206_CaseStudy.addParent(parentList, p);
 					}
 					else if (option == 3) {
 						// Delete parent
-						System.out.println("Delete parent");
+						C206_CaseStudy.removeParent(parentList);
 					}
 					else if (option == 4) {
 						// Quit
@@ -201,6 +202,57 @@ public class C206_CaseStudy {
 		output += retrieveAllParent(parentList);
 		System.out.println(output);
 	}
+	
+	// =============== ADD PARENT ===============
+	private static Parent inputParent() {
+		int studentID = Helper.readInt("Enter Student ID > ");
+		String studentName = Helper.readString("Enter Student Name > ");
+		String grade = Helper.readString("Enter Grade (P1/P2/P3) > ");
+		String classroom = Helper.readString("Enter classroom > ");
+		String teachName = Helper.readString("Enter Teacher's Name > ");
+		String parentName = Helper.readString("Enter Parent'S Name > ");
+		String email = Helper.readString("Enter Parent Email > ");
+		int contactNum = Helper.readInt("Enter Contact Number > ");
+		
+		Parent p = new Parent(studentID, studentName, grade, classroom, teachName, parentName, email, contactNum);
+		return p;
+	}
+	
+	private static void addParent(ArrayList<Parent> parentList, Parent p) {
+		parentList.add(p);
+		for (int i = 0; i < parentList.size(); i++) {
+			if (parentList.get(i).getGrade().equals("P1")||
+					parentList.get(i).getGrade().equals("P2")||
+					parentList.get(i).getGrade().equals("P3")) {
+				System.out.println("Student added!");
+			}
+			else {
+				parentList.remove(i);
+				System.out.println("Invalid grade!");
+			}
+
+		}
+		
+	}
+	
+	// =============== DELETE PARENT ===============
+	private static void removeParent(ArrayList<Parent> parentList) {
+		C206_CaseStudy.viewAllParent(parentList);
+		
+		int studentID = Helper.readInt("Enter Student ID > ");
+		
+		for (int i = 0; i < parentList.size(); i++) {
+			if (parentList.get(i).getStudentID() == studentID) {
+				System.out.println("Student removed!");
+				parentList.remove(i);
+			}
+			else {
+				System.out.println("Invalid ID!");
+			}
+		}
+		
+	}
+
 	
 	// ============================== STUDENT ==============================
 	
