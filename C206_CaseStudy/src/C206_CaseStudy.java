@@ -6,7 +6,7 @@ public class C206_CaseStudy {
 		// TODO Auto-generated method stub
 
 		ArrayList<Student> studList = new ArrayList<Student>();
-		ArrayList<CCA> 
+//		ArrayList<CCA> 
 		
 		int role = 0;
 		
