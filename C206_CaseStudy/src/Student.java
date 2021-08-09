@@ -1,7 +1,7 @@
 
 public class Student {
 
-	private String StudentID;
+	private int StudentID;
 	private String Name;
 	private String Grade;
 	private String Classroom;
@@ -9,7 +9,7 @@ public class Student {
 	private String StudentEmail;
 	private int ContactNum;
 	
-	public Student(String studentID, String name, String grade, String classroom, String teacher, String studentEmail, int contactNum) {
+	public Student(int studentID, String name, String grade, String classroom, String teacher, String studentEmail, int contactNum) {
 		super();
 		StudentID = studentID;
 		Name = name;
@@ -20,11 +20,11 @@ public class Student {
 		ContactNum = contactNum;
 	}
 
-	public String getStudentID() {
+	public int getStudentID() {
 		return StudentID;
 	}
 
-	public void setStudentID(String studentID) {
+	public void setStudentID(int studentID) {
 		StudentID = studentID;
 	}
 

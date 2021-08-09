@@ -5,7 +5,7 @@ public class C206_CaseStudy {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		ArrayList<Student> studList = new ArrayList<Student>();
+		ArrayList<Student> studentList = new ArrayList<Student>();
 		ArrayList<CCAcategory> categoryList = new ArrayList<CCAcategory>();
 
 		categoryList.add(new CCAcategory("Sports"));
@@ -106,6 +106,7 @@ public class C206_CaseStudy {
 					if (option == 1) {
 						// View all students
 						System.out.println("View all students");
+						C206_CaseStudy.viewAllStudent(studentList);
 					}
 					else if (option == 2) {
 						// Add student
@@ -177,4 +178,29 @@ public class C206_CaseStudy {
 
 	}
 
+	// ============================== STUDENT ==============================
+	
+	// =============== VIEW ALL STUDENT ===============
+	private static void viewAllStudent(ArrayList<Student> studentList) {
+				
+	}
+	
+	// =============== ADD STUDENT ===============
+	private static void inputStudent() {
+		
+	}
+	
+	private static void addStudent(ArrayList<Student> studentList, Student s) {
+		
+	}
+
+	// =============== DELETE STUDENT ===============
+	private static void removeStudent(ArrayList<Student> studentList, int studentID) {
+		for (int i = 0; i < studentList.size(); i++) {
+			if (studentList.get(i).getStudentID() == studentID) {
+				studentList.remove(i);
+			}
+		}
+	}
+	
 }
