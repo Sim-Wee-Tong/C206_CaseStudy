@@ -37,7 +37,11 @@ public class C206_CaseStudy {
 
 		}
 	}
-	public static void addCCA(ArrayList<CCAcategory> categoryList, CCAcategory category) {
+	public static void viewAllCCAcategories() {
 		
+	}
+	public static void addCCA(ArrayList<CCAcategory> categoryList, CCAcategory category) {
+		categoryList.add(category);
+		System.out.println("Category added");
 	}
 }
