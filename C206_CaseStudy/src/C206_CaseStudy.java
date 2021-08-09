@@ -324,5 +324,13 @@ public class C206_CaseStudy {
 		}
 		
 	}
+	// ============================== CCA CATEGORY ==============================
+
+	// =============== VIEW ALL CATEGORIES ===============
+	private static void viewAllCategories() {
+		
+	}
+	// =============== ADD CATEGORY ===============
+	// =============== DELETE CATEGORY ===============
 	
 }
