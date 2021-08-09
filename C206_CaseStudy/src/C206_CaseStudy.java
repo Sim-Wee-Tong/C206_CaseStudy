@@ -73,7 +73,7 @@ public class C206_CaseStudy {
 					
 					if (option == 1) {
 						// View all parent
-						System.out.println("View all parent");
+						C206_CaseStudy.viewAllParent(parentList);
 					}
 					else if (option == 2) {
 						// Add parent
@@ -179,6 +179,29 @@ public class C206_CaseStudy {
 
 	}
 
+	// ============================== PARENT ==============================
+	
+	// =============== VIEW ALL PARENT ===============
+	private static String retrieveAllParent(ArrayList<Parent> parentList) {
+		String output = "";
+		
+		for (int i = 0; i < parentList.size(); i++) {
+			output += String.format("%-10d %-30s %-5s %-5s %-30s %-30s %-20s %-10d\n", parentList.get(i).getStudentID(), 
+					parentList.get(i).getStudentName(), parentList.get(i).getGrade(), parentList.get(i).getClassroom(),
+					parentList.get(i).getTeacher(), parentList.get(i).getParentName(), parentList.get(i).getParentEmail(),
+					parentList.get(i).getParentNum());
+		}
+		return output;
+	}
+	
+	private static void viewAllParent(ArrayList<Parent> parentList) {
+		C206_CaseStudy.setHeader("VIEW ALL PARENTS");
+		String output = String.format("%-10d %-30s %-5s %-5s %-30s %-30s %-20s %-10d\\n", "STUDENT ID", "STUDENT NAME",
+				"GRADE", "CLASS", "TEACHER NAME", "PARENT NAME", "EMAIL", "CONTACT NO");
+		output += retrieveAllParent(parentList);
+		System.out.println(output);
+	}
+	
 	// ============================== STUDENT ==============================
 	
 	// =============== VIEW ALL STUDENT ===============
@@ -217,7 +240,19 @@ public class C206_CaseStudy {
 	
 	private static void addStudent(ArrayList<Student> studentList, Student s) {
 		studentList.add(s);
-		System.out.println("Student added!");
+		for (int i = 0; i < studentList.size(); i++) {
+			if (studentList.get(i).getGrade().equals("P4")||
+					studentList.get(i).getGrade().equals("P5")||
+					studentList.get(i).getGrade().equals("P6")) {
+				System.out.println("Student added!");
+			}
+			else {
+				studentList.remove(i);
+				System.out.println("Invalid grade!");
+			}
+
+		}
+		
 	}
 
 	// =============== DELETE STUDENT ===============
