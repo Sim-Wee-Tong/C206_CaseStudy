@@ -105,16 +105,16 @@ public class C206_CaseStudy {
 					
 					if (option == 1) {
 						// View all students
-						System.out.println("View all students");
 						C206_CaseStudy.viewAllStudent(studentList);
 					}
 					else if (option == 2) {
 						// Add student
-						System.out.println("Add student");
+						Student s = inputStudent();
+						C206_CaseStudy.addStudent(studentList, s);
 					}
 					else if (option == 3) {
 						// Delete student
-						System.out.println("Delete student");
+						C206_CaseStudy.removeStudent(studentList);
 					}
 					else if (option == 4) {
 						// Quit
@@ -181,26 +181,60 @@ public class C206_CaseStudy {
 	// ============================== STUDENT ==============================
 	
 	// =============== VIEW ALL STUDENT ===============
-	private static void viewAllStudent(ArrayList<Student> studentList) {
-				
+	private static String retrieveAllStudent(ArrayList<Student> studentList) {
+		String output = "";
+		
+		for (int i = 0; i < studentList.size(); i++) {
+			output += String.format("%-10d %-30s %-5s %-5s %-30s %-20s %-10d\n", studentList.get(i).getStudentID(),
+					studentList.get(i).getName(), studentList.get(i).getGrade(), studentList.get(i).getClassroom(),
+					studentList.get(i).getTeacher(), studentList.get(i).getStudentEmail(), studentList.get(i).getContactNum());
+		}
+		return output;
 	}
+
+	private static void viewAllStudent(ArrayList<Student> studentList) {
+		C206_CaseStudy.setHeader("VIEW ALL STUDENTS");
+		String output = String.format("%-10s %-30s %-5s %-5s %-30s %-20s %-10s\n", "STUDENT ID", "STUDENT NAME",
+				"GRADE", "CLASS", "TEACHER NAME", "EMAIL", "CONTACT NO");
+		output += retrieveAllStudent(studentList);
+		System.out.println(output);
+	}	
 	
 	// =============== ADD STUDENT ===============
-	private static void inputStudent() {
+	private static Student inputStudent() {
+		int studentID = Helper.readInt("Enter Student ID > ");
+		String studentName = Helper.readString("Enter Student Name > ");
+		String grade = Helper.readString("Enter Grade (P4/P5/P6) > ");
+		String classroom = Helper.readString("Enter classroom > ");
+		String teachName = Helper.readString("Enter Teacher's Name > ");
+		String email = Helper.readString("Enter Student Email ({studentID}@myrp.edu.sg) > ");
+		int contactNum = Helper.readInt("Enter Contact Number > ");
 		
+		Student s = new Student(studentID, studentName, grade, classroom, teachName, email, contactNum);
+		return s;
 	}
 	
 	private static void addStudent(ArrayList<Student> studentList, Student s) {
-		
+		studentList.add(s);
+		System.out.println("Student added!");
 	}
 
 	// =============== DELETE STUDENT ===============
-	private static void removeStudent(ArrayList<Student> studentList, int studentID) {
+	private static void removeStudent(ArrayList<Student> studentList) {
+		C206_CaseStudy.viewAllStudent(studentList);
+		
+		int studentID = Helper.readInt("Enter Student ID > ");
+		
 		for (int i = 0; i < studentList.size(); i++) {
 			if (studentList.get(i).getStudentID() == studentID) {
+				System.out.println("Student removed!");
 				studentList.remove(i);
 			}
+			else {
+				System.out.println("Invalid ID!");
+			}
 		}
+		
 	}
 	
 }
