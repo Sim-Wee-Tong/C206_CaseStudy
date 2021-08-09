@@ -327,10 +327,34 @@ public class C206_CaseStudy {
 	// ============================== CCA CATEGORY ==============================
 
 	// =============== VIEW ALL CATEGORIES ===============
-	private static void viewAllCategories() {
-		
+	private static String retrieveAllCategories(ArrayList<CCAcategory> categoryList) {
+		String output = "";
+		for (int i = 0; i < categoryList.size(); i++) {
+			output += String.format("%-10s", categoryList.get(i).getCategory());
+		}
+		return output;
+	}
+	private static void viewAllCategories(ArrayList<CCAcategory> categoryList) {
+		C206_CaseStudy.setHeader("VIEW ALL CATEGORIES");
+		String output = String.format("%-10s", "CATEGORIES:");
+		output += retrieveAllCategories(categoryList);
+		System.out.println(output);
 	}
 	// =============== ADD CATEGORY ===============
+	private static void addCategory(ArrayList<CCAcategory> categoryList, CCAcategory cca) {
+		categoryList.add(cca);
+		System.out.println("Category added");
+	}
 	// =============== DELETE CATEGORY ===============
-	
+	private static void deleteCategory(ArrayList<CCAcategory> categoryList) {
+		String category = Helper.readString("Enter category > ");
+		for (int i = 0; i < categoryList.size(); i++) {
+			if (categoryList.get(i).getCategory() == category) {
+				categoryList.remove(i);
+				System.out.println("Category deleted");
+			} else {
+				System.out.println("There is no such category");
+			}
+		}
+	}
 }
