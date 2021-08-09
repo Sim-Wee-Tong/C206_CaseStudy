@@ -8,11 +8,10 @@ public class C206_CaseStudy {
 		ArrayList<Student> studList = new ArrayList<Student>();
 		ArrayList<CCAcategory> categoryList = new ArrayList<CCAcategory>();
 
-		categoryList.add(new CCAcategory("Little League Soccer"));
-		categoryList.add(new CCAcategory("LEGO expert"));
-		categoryList.add(new CCAcategory("Dig the ground"));
-		categoryList.add(new CCAcategory("Bakery"));
-		categoryList.add(new CCAcategory("Jewellry making"));
+		categoryList.add(new CCAcategory("Sports"));
+		categoryList.add(new CCAcategory("Art"));
+		categoryList.add(new CCAcategory("Music"));
+		categoryList.add(new CCAcategory("Food"));
 		
 		int role = 0;
 		
