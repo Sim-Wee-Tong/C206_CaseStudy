@@ -7,15 +7,17 @@ public class Student {
 	private String Classroom;
 	private String Teacher;
 	private String StudentEmail;
-	private int contactNum;
+	private int ContactNum;
 	
-	public Student(String studentID, String name, String grade, String classroom, String teacher) {
+	public Student(String studentID, String name, String grade, String classroom, String teacher, String studentEmail, int contactNum) {
 		super();
 		StudentID = studentID;
 		Name = name;
 		Grade = grade;
 		Classroom = classroom;
 		Teacher = teacher;
+		StudentEmail = studentEmail;
+		ContactNum = contactNum;
 	}
 
 	public String getStudentID() {
@@ -67,11 +69,11 @@ public class Student {
 	}
 
 	public int getContactNum() {
-		return contactNum;
+		return ContactNum;
 	}
 
 	public void setContactNum(int contactNum) {
-		this.contactNum = contactNum;
+		this.ContactNum = contactNum;
 	}
 	
 }
