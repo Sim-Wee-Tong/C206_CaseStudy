@@ -11,6 +11,9 @@ public class CCA {
 	private String category;
 	
 	public CCA(String category) {
-		
+		this.category = category;
+	}
+	public String getCategory() {
+		return category;
 	}
 }
