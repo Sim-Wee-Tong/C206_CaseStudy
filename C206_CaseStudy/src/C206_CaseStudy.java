@@ -187,7 +187,7 @@ public class C206_CaseStudy {
 	// ============================== PARENT ==============================
 	
 	// =============== VIEW ALL PARENT ===============
-	private static String retrieveAllParent(ArrayList<Parent> parentList) {
+	public static String retrieveAllParent(ArrayList<Parent> parentList) {
 		String output = "";
 		
 		for (int i = 0; i < parentList.size(); i++) {
@@ -199,7 +199,7 @@ public class C206_CaseStudy {
 		return output;
 	}
 	
-	private static void viewAllParent(ArrayList<Parent> parentList) {
+	public static void viewAllParent(ArrayList<Parent> parentList) {
 		C206_CaseStudy.setHeader("VIEW ALL PARENTS");
 		String output = String.format("%-10d %-30s %-5s %-5s %-30s %-30s %-20s %-10d\\n", "STUDENT ID", "STUDENT NAME",
 				"GRADE", "CLASS", "TEACHER NAME", "PARENT NAME", "EMAIL", "CONTACT NO");
@@ -208,7 +208,7 @@ public class C206_CaseStudy {
 	}
 	
 	// =============== ADD PARENT ===============
-	private static Parent inputParent() {
+	public static Parent inputParent() {
 		int studentID = Helper.readInt("Enter Student ID > ");
 		String studentName = Helper.readString("Enter Student Name > ");
 		String grade = Helper.readString("Enter Grade (P1/P2/P3) > ");
@@ -222,7 +222,7 @@ public class C206_CaseStudy {
 		return p;
 	}
 	
-	private static void addParent(ArrayList<Parent> parentList, Parent p) {
+	public static void addParent(ArrayList<Parent> parentList, Parent p) {
 		parentList.add(p);
 		for (int i = 0; i < parentList.size(); i++) {
 			if (parentList.get(i).getGrade().equals("P1")||
@@ -240,7 +240,7 @@ public class C206_CaseStudy {
 	}
 	
 	// =============== DELETE PARENT ===============
-	private static void removeParent(ArrayList<Parent> parentList) {
+	public static void removeParent(ArrayList<Parent> parentList) {
 		C206_CaseStudy.viewAllParent(parentList);
 		
 		int studentID = Helper.readInt("Enter Student ID > ");
@@ -261,7 +261,7 @@ public class C206_CaseStudy {
 	// ============================== STUDENT ==============================
 	
 	// =============== VIEW ALL STUDENT ===============
-	private static String retrieveAllStudent(ArrayList<Student> studentList) {
+	public static String retrieveAllStudent(ArrayList<Student> studentList) {
 		String output = "";
 		
 		for (int i = 0; i < studentList.size(); i++) {
@@ -272,7 +272,7 @@ public class C206_CaseStudy {
 		return output;
 	}
 
-	private static void viewAllStudent(ArrayList<Student> studentList) {
+	public static void viewAllStudent(ArrayList<Student> studentList) {
 		C206_CaseStudy.setHeader("VIEW ALL STUDENTS");
 		String output = String.format("%-10s %-30s %-5s %-5s %-30s %-20s %-10s\n", "STUDENT ID", "STUDENT NAME",
 				"GRADE", "CLASS", "TEACHER NAME", "EMAIL", "CONTACT NO");
@@ -281,7 +281,7 @@ public class C206_CaseStudy {
 	}	
 	
 	// =============== ADD STUDENT ===============
-	private static Student inputStudent() {
+	public static Student inputStudent() {
 		int studentID = Helper.readInt("Enter Student ID > ");
 		String studentName = Helper.readString("Enter Student Name > ");
 		String grade = Helper.readString("Enter Grade (P4/P5/P6) > ");
@@ -294,7 +294,7 @@ public class C206_CaseStudy {
 		return s;
 	}
 	
-	private static void addStudent(ArrayList<Student> studentList, Student s) {
+	public static void addStudent(ArrayList<Student> studentList, Student s) {
 		studentList.add(s);
 		for (int i = 0; i < studentList.size(); i++) {
 			if (studentList.get(i).getGrade().equals("P4")||
@@ -312,7 +312,7 @@ public class C206_CaseStudy {
 	}
 
 	// =============== DELETE STUDENT ===============
-	private static void removeStudent(ArrayList<Student> studentList) {
+	public static void removeStudent(ArrayList<Student> studentList) {
 		C206_CaseStudy.viewAllStudent(studentList);
 		
 		int studentID = Helper.readInt("Enter Student ID > ");
@@ -329,7 +329,7 @@ public class C206_CaseStudy {
 		
 	}
 	// ============================== CCA  ==============================
-	private static void viewAllCCA(ArrayList<CCA> ccaList) {
+	public static void viewAllCCA(ArrayList<CCA> ccaList) {
 		C206_CaseStudy.setHeader("VIEW ALL CCA");
 		String output = String.format("%-10s %-10s %-10s %-10s %-10s %-10s %-10s", "Title", "Description", "Size", "Day","Time", "Venue", "Name of instructor");
 		for (CCA e : ccaList) {
@@ -339,7 +339,7 @@ public class C206_CaseStudy {
 	}
 	
 	// =============== ADD CCA ===============
-	private static void addCCA(ArrayList<CCA> ccaList) {
+	public static void addCCA(ArrayList<CCA> ccaList) {
 		String title = Helper.readString("Enter CCA name: ");
 		String description = Helper.readString("Enter Description: ");
 		int size = Helper.readInt("Enter size: ");
@@ -353,7 +353,7 @@ public class C206_CaseStudy {
 	}
 	
 	// =============== DELETE CCA ===============
-	private static void deleteCCA(ArrayList<CCA> ccaList) {
+	public static void deleteCCA(ArrayList<CCA> ccaList) {
 		String cca = Helper.readString("Enter CCA > ");
 		for (CCA e : ccaList) {
 			if (e.getTitle() == cca) {
@@ -367,14 +367,14 @@ public class C206_CaseStudy {
 	// ============================== CCA CATEGORY ==============================
 
 	// =============== VIEW ALL CATEGORIES ===============
-	private static String retrieveAllCategories(ArrayList<CCAcategory> categoryList) {
+	public static String retrieveAllCategories(ArrayList<CCAcategory> categoryList) {
 		String output = "";
 		for (int i = 0; i < categoryList.size(); i++) {
 			output += String.format("%-8s", categoryList.get(i).getCategory());
 		}
 		return output;
 	}
-	private static void viewAllCategories(ArrayList<CCAcategory> categoryList) {
+	public static void viewAllCategories(ArrayList<CCAcategory> categoryList) {
 		C206_CaseStudy.setHeader("VIEW ALL CATEGORIES");
 		String output = String.format("%-8s", "CATEGORIES: ");
 		output += retrieveAllCategories(categoryList);
@@ -382,18 +382,18 @@ public class C206_CaseStudy {
 	}
 	
 	// =============== ADD CATEGORY ===============
-	private static CCAcategory inputCategory() {
+	public static CCAcategory inputCategory() {
 		String category = Helper.readString("Enter category > ");
 		CCAcategory c = new CCAcategory(category);
 		return c;
 	}
-	private static void addCategory(ArrayList<CCAcategory> categoryList, CCAcategory c) {
+	public static void addCategory(ArrayList<CCAcategory> categoryList, CCAcategory c) {
 		categoryList.add(c);
 		System.out.println("Category added");
 	}
 	
 	// =============== DELETE CATEGORY ===============
-	private static void deleteCategory(ArrayList<CCAcategory> categoryList) {
+	public static void deleteCategory(ArrayList<CCAcategory> categoryList) {
 		C206_CaseStudy.viewAllCategories(categoryList);
 		String category = Helper.readString("Enter category > ");
 		for (int i = 0; i < categoryList.size(); i++) {
