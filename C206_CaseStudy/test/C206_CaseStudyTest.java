@@ -67,7 +67,6 @@ public class C206_CaseStudyTest {
 				20234567, "Xiao Hua", "P4", "W64A", "Desmond Lee", "202345676@myrp.edu.sg", 87654321);
 	
 		assertEquals("Test that ViewAllStudentlist", testOutput, allStudent);
-		
 	}
 
 	@After
