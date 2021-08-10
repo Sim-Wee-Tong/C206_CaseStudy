@@ -152,7 +152,7 @@ public class C206_CaseStudy {
 		// TODO Auto-generated method stub
 		C206_CaseStudy.setHeader("ROLES");
 		System.out.println("1. CCA Coordinator");
-		System.out.println("2. Parent (If sutdent grade is in P3 and under");
+		System.out.println("2. Parent (If sutdent grade is in P3 and under)");
 		System.out.println("3. Student");
 		System.out.println("4. Quit");
 	}
@@ -334,13 +334,13 @@ public class C206_CaseStudy {
 	private static String retrieveAllCategories(ArrayList<CCAcategory> categoryList) {
 		String output = "";
 		for (int i = 0; i < categoryList.size(); i++) {
-			output += String.format("%-10s", categoryList.get(i).getCategory());
+			output += String.format("%-8s", categoryList.get(i).getCategory());
 		}
 		return output;
 	}
 	private static void viewAllCategories(ArrayList<CCAcategory> categoryList) {
 		C206_CaseStudy.setHeader("VIEW ALL CATEGORIES");
-		String output = String.format("%-10s", "CATEGORIES:");
+		String output = String.format("%-8s", "CATEGORIES: ");
 		output += retrieveAllCategories(categoryList);
 		System.out.println(output);
 	}
@@ -358,7 +358,7 @@ public class C206_CaseStudy {
 	
 	// =============== DELETE CATEGORY ===============
 	private static void deleteCategory(ArrayList<CCAcategory> categoryList) {
-		C206_CaseStudy.deleteCategory(categoryList);
+		C206_CaseStudy.viewAllCategories(categoryList);
 		String category = Helper.readString("Enter category > ");
 		for (int i = 0; i < categoryList.size(); i++) {
 			if (categoryList.get(i).getCategory() == category) {
