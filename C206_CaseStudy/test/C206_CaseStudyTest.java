@@ -66,7 +66,7 @@ public class C206_CaseStudyTest {
 		testOutput += String.format("%-10d %-30s %-5s %-5s %-30s %-30s %-20s %-10d\n",
 				20234567, "Xiao Hua", "P4", "W64A", "Desmond Lee", "202345676@myrp.edu.sg", 87654321);
 	
-		assertEquals("Test that ViewAllStudentlist", testOutput, allStudent);
+		assertEquals("Test that ViewAllStudentlist", testOutput, allStudent); 
 	}
 
 	@After
