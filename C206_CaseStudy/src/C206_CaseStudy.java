@@ -416,13 +416,5 @@ public class C206_CaseStudy {
 				System.out.println("There is no such category");
 			}
 		}
-//		for (CCAcategory c : categoryList) {
-//			if (c.getCategory().equals(category)) {
-//				categoryList.remove(c);
-//				System.out.println("Category deleted");
-//			} else {
-//				System.out.println("There is no such category");
-//			}
-//		}
 	}
 }
