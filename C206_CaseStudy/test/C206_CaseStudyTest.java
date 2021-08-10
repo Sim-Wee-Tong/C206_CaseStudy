@@ -32,7 +32,7 @@ public class C206_CaseStudyTest {
 	}
 	
 	@Test
-	public void addStudentTest() {
+	public void addStudentTest() { 
 		// Item list is not null, so that can add a new item - boundary
 		assertNotNull("Check if there is valid Student arraylist to add to", studentList);
 		//Given an empty list, after adding 1 item, the size of the list is 1 - normal
