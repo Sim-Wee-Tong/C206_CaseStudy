@@ -411,7 +411,7 @@ public class C206_CaseStudy {
 		for (int i = 0; i < categoryList.size(); i++) {
 			if (categoryList.get(i).getCategory().equals(category)) {
 				categoryList.remove(i);
-				System.out.println("Category " + category + " deleted");
+				System.out.println("Category '" + category + "' deleted");
 			} else {
 				System.out.println("There is no such category");
 			}
