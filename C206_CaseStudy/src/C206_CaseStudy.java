@@ -54,7 +54,16 @@ public class C206_CaseStudy {
 //						System.out.println("Delete CCA Category");
 						C206_CaseStudy.deleteCategory(categoryList);
 					}
-					else if (option == 6){
+					else if (option == 6) {
+						// Add parent account
+					}
+					else if (option == 7) {
+						// View registered parents
+					}
+					else if (option == 8) {
+						// Delete parent
+					}
+					else if (option == 9){
 						// Quit CCA
 						System.out.println("Returning to Login page...");
 					}
@@ -159,12 +168,15 @@ public class C206_CaseStudy {
 	
 	public static void coordinatorMenu() {
 		C206_CaseStudy.setHeader("CCA COORDINATOR");
-		System.out.println("1. View all CCA and Category");
+		System.out.println("1. View all CCA and Categories");
 		System.out.println("2. Add CCA");
 		System.out.println("3. Delete CCA");
 		System.out.println("4. Add CCA Category");
 		System.out.println("5. Delete CCA Category");
-		System.out.println("6. Quit");
+		System.out.println("6. Add parent account");
+		System.out.println("7. View registered parents");
+		System.out.println("8. Delete parent");
+		System.out.println("9. Quit");
 	}
 	
 	public static void parentMenu() {
@@ -397,9 +409,9 @@ public class C206_CaseStudy {
 		C206_CaseStudy.viewAllCategories(categoryList);
 		String category = Helper.readString("Enter category > ");
 		for (int i = 0; i < categoryList.size(); i++) {
-			if (categoryList.get(i).getCategory() == category) {
+			if (categoryList.get(i).getCategory().equals(category)) {
 				categoryList.remove(i);
-				System.out.println("Category deleted");
+				System.out.println("Category '" + category + "' deleted");
 			} else {
 				System.out.println("There is no such category");
 			}
