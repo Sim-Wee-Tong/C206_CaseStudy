@@ -400,7 +400,7 @@ public class C206_CaseStudy {
 	
 	// =============== ADD CATEGORY ===============
 	public static CCAcategory inputCategory() {
-		String category = Helper.readString("Enter category > ");
+		String category = Helper.readString("Enter category to add > ");
 		CCAcategory c = new CCAcategory(category);
 		return c;
 	}
@@ -412,7 +412,7 @@ public class C206_CaseStudy {
 	// =============== DELETE CATEGORY ===============
 	public static void deleteCategory(ArrayList<CCAcategory> categoryList) {
 		C206_CaseStudy.viewAllCategories(categoryList);
-		String category = Helper.readString("Enter category > ");
+		String category = Helper.readString("Enter category to delete > ");
 		for (int i = 0; i < categoryList.size(); i++) {
 			if (categoryList.get(i).getCategory().equals(category)) {
 				categoryList.remove(i);
