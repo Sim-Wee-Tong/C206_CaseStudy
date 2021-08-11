@@ -9,6 +9,9 @@ public class C206_CaseStudy {
 		ArrayList<Parent> parentList = new ArrayList<Parent>();
 		ArrayList<CCAcategory> categoryList = new ArrayList<CCAcategory>();
 
+		studentList.add(new Student(20123, "Xiao Ming", "P4", "W64A", "Desmond Lee", "20123@myrp.edu.sg", 98765432));
+		studentList.add(new Student(20234, "Xiao Hua", "P4", "W64A", "Desmond Lee", "20234@myrp.edu.sg", 87654321));
+		
 		categoryList.add(new CCAcategory("Sports"));
 		categoryList.add(new CCAcategory("Art"));
 		categoryList.add(new CCAcategory("Music"));
@@ -129,7 +132,10 @@ public class C206_CaseStudy {
 					}
 					else if (option == 3) {
 						// Delete student
-						C206_CaseStudy.removeStudent(studentList);
+						C206_CaseStudy.viewAllStudent(studentList);
+						int studentID = Helper.readInt("Enter Student ID > ");
+						
+						C206_CaseStudy.removeStudent(studentList, studentID);
 					}
 					else if (option == 4) {
 						// Quit
@@ -324,11 +330,7 @@ public class C206_CaseStudy {
 	}
 
 	// =============== DELETE STUDENT ===============
-	public static void removeStudent(ArrayList<Student> studentList) {
-		C206_CaseStudy.viewAllStudent(studentList);
-		
-		int studentID = Helper.readInt("Enter Student ID > ");
-		
+	public static void removeStudent(ArrayList<Student> studentList, int studentID) {
 		for (int i = 0; i < studentList.size(); i++) {
 			if (studentList.get(i).getStudentID() == studentID) {
 				System.out.println("Student removed!");

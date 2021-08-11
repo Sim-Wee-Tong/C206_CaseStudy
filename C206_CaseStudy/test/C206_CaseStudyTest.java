@@ -15,8 +15,8 @@ public class C206_CaseStudyTest {
 
 	@Before
 	public void setUp() throws Exception {
-		s1 = new Student(20123456, "Xiao Ming", "P4", "W64A", "Desmond Lee", "20123456@myrp.edu.sg", 98765432);
-		s2 = new Student(20234567, "Xiao Hua", "P4", "W64A", "Desmond Lee", "202345676@myrp.edu.sg", 87654321);
+		s1 = new Student(20123, "Xiao Ming", "P4", "W64A", "Desmond Lee", "20123@myrp.edu.sg", 98765432);
+		s2 = new Student(20234, "Xiao Hua", "P4", "W64A", "Desmond Lee", "20234@myrp.edu.sg", 87654321);
 		
 		studentList = new ArrayList<Student>();
 	}
@@ -47,26 +47,41 @@ public class C206_CaseStudyTest {
 	@Test
 	public void retrieveAllStudentTest() {
 		// Test if Item list is not null but empty -boundary
-		assertNotNull("Test if there is valid Camcorder arraylist to retrieve item", studentList);
+		assertNotNull("Test if there is valid Student arraylist to retrieve item", studentList);
 		
 		//test if the list of students retrieved from the CaseStudy is empty - boundary
 		String allStudent= C206_CaseStudy.retrieveAllStudent(studentList);
 		String testOutput = "";
-		assertEquals("Check that ViewAllCamcorderlist", testOutput, allStudent);
+		assertEquals("Check that ViewAllStudentlist", testOutput, allStudent);
 		
 		//Given an empty list, after adding 2 items, test if the size of the list is 2 - normal
 		C206_CaseStudy.addStudent(studentList, s1);
 		C206_CaseStudy.addStudent(studentList, s2);
-		assertEquals("Test that Camcorder arraylist size is 2", 2, studentList.size());
+		assertEquals("Test that Student arraylist size is 2", 2, studentList.size());
 		
 		//test if the expected output string same as the list of students retrieved from the CaseStudy	
 		allStudent= C206_CaseStudy.retrieveAllStudent(studentList);
-		testOutput = String.format("%-10d %-30s %-5s %-5s %-30s %-30s %-20s %-10d\n", 
-				20123456, "Xiao Ming", "P4", "W64A", "Desmond Lee", "20123456@myrp.edu.sg", 98765432);
-		testOutput += String.format("%-10d %-30s %-5s %-5s %-30s %-30s %-20s %-10d\n",
-				20234567, "Xiao Hua", "P4", "W64A", "Desmond Lee", "202345676@myrp.edu.sg", 87654321);
+		testOutput = String.format("%-10d %-30s %-5s %-5s %-30s %-30s %-20s %-10d \n", 
+				20123, "Xiao Ming", "P4", "W64A", "Desmond Lee", "20123@myrp.edu.sg", 98765432);
+		testOutput += String.format("%-10d %-30s %-5s %-5s %-30s %-30s %-20s %-10d \n",
+				20234, "Xiao Hua", "P4", "W64A", "Desmond Lee", "20234@myrp.edu.sg", 87654321);
 	
 		assertEquals("Test that ViewAllStudentlist", testOutput, allStudent); 
+	}
+	
+	@Test
+	public void removeStudentTest() {
+		// Test if item list is not null but empty - boundary
+		assertNotNull("Test if there is valid Student arraylist to retrieve item", studentList);
+		
+		//Given an empty list, after adding 2 items, test if the size of the list is 2 - normal
+		C206_CaseStudy.addStudent(studentList, s1);
+		C206_CaseStudy.addStudent(studentList, s2);
+		assertEquals("Test that Student arraylist size is 2", 2, studentList.size());
+		
+		// Test that after removing an item, the size of the list is 1 - normal
+		C206_CaseStudy.removeStudent(studentList, s1.getStudentID());
+		assertEquals("Test that Student arrayList size is 1", 1, studentList.size());
 	}
 
 	@After
