@@ -393,7 +393,7 @@ public class C206_CaseStudy {
 	}
 	public static void viewAllCategories(ArrayList<CCAcategory> categoryList) {
 		C206_CaseStudy.setHeader("VIEW ALL CATEGORIES");
-		String output = String.format("%-8s", "CATEGORIES: ");
+		String output = String.format("", "CATEGORIES: ");
 		output += retrieveAllCategories(categoryList);
 		System.out.println(output);
 	}
