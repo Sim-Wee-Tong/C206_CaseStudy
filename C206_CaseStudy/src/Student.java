@@ -27,6 +27,11 @@ public class Student {
 	public int getCCAID() {
 		return CCAID;
 	}
+	
+	public void setCCAID(int CCAID) {
+		
+	}
+
 
 	public int getStudentID() {
 		return StudentID;
@@ -91,5 +96,5 @@ public class Student {
 	public void setCCA(String cca) {
 		this.CCA = cca;
 	}
-	
+		
 }

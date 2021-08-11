@@ -299,18 +299,18 @@ public class C206_CaseStudy {
 		String output = "";
 		
 		for (int i = 0; i < studentList.size(); i++) {
-			output += String.format("%-10d %-30s %-5s %-5s %-30s %-20s %-10d %-15s\n", studentList.get(i).getStudentID(),
+			output += String.format("%-10d %-30s %-5s %-5s %-30s %-20s %-10d %-15s %-10d\n", studentList.get(i).getStudentID(),
 					studentList.get(i).getName(), studentList.get(i).getGrade(), studentList.get(i).getClassroom(),
 					studentList.get(i).getTeacher(), studentList.get(i).getStudentEmail(), studentList.get(i).getContactNum(),
-					studentList.get(i).getCCA());
+					studentList.get(i).getCCA(), studentList.get(i).getCCAID());
 		}
 		return output;
 	}
 
 	public static void viewAllStudent(ArrayList<Student> studentList) {
 		C206_CaseStudy.setHeader("VIEW ALL STUDENTS");
-		String output = String.format("%-10s %-30s %-5s %-5s %-30s %-20s %-10s %-15s\n", "STUDENT ID", "STUDENT NAME",
-				"GRADE", "CLASS", "TEACHER NAME", "EMAIL", "CONTACT NO", "CCA");
+		String output = String.format("%-10s %-30s %-5s %-5s %-30s %-20s %-10s %-15s %-10s\n", "STUDENT ID", "STUDENT NAME",
+				"GRADE", "CLASS", "TEACHER NAME", "EMAIL", "CONTACT NO", "CCA", "CCA ID");
 		output += retrieveAllStudent(studentList);
 		System.out.println(output);
 	}	
@@ -325,8 +325,9 @@ public class C206_CaseStudy {
 		String email = Helper.readString("Enter Student Email ({studentID}@myrp.edu.sg) > ");
 		int contactNum = Helper.readInt("Enter Contact Number > ");
 		String cca = Helper.readString("Enter CCA (If not in a CCA, put 'null')> ");
+		int ccaId = Helper.readInt("Enter CCA ID (If no CCA ID, put '0' > ");
 		
-		Student s = new Student(studentID, studentName, grade, classroom, teachName, email, contactNum, cca);
+		Student s = new Student(studentID, studentName, grade, classroom, teachName, email, contactNum, cca, ccaId);
 		return s;
 	}
 	

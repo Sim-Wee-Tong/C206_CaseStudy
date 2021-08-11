@@ -133,10 +133,10 @@ public class C206_CaseStudyTest {
 		
 		//test if the expected output string same as the list of students retrieved from the CaseStudy	
 		allStudent= C206_CaseStudy.retrieveAllStudent(studentList);
-		testOutput = String.format("%-10d %-30s %-5s %-5s %-30s %-30s %-20s %-10d %-15s\n", 
-				20123, "Xiao Ming", "P4", "W64A", "Desmond Lee", "20123@myrp.edu.sg", 98765432, null);
-		testOutput += String.format("%-10d %-30s %-5s %-5s %-30s %-30s %-20s %-10d %-15s\n",
-				20234, "Xiao Hua", "P4", "W64A", "Desmond Lee", "20234@myrp.edu.sg", 87654321, null);
+		testOutput = String.format("%-10d %-30s %-5s %-5s %-30s %-30s %-20s %-10d %-15s %-10d\n", 
+				20123, "Xiao Ming", "P4", "W64A", "Desmond Lee", "20123@myrp.edu.sg", 98765432, null, 0);
+		testOutput += String.format("%-10d %-30s %-5s %-5s %-30s %-30s %-20s %-10d %-15s %-10d\n",
+				20234, "Xiao Hua", "P4", "W64A", "Desmond Lee", "20234@myrp.edu.sg", 87654321, null, 0);
 	
 		assertEquals("Test that ViewAllStudentlist", testOutput, allStudent); 
 	}
