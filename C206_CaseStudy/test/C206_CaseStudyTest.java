@@ -12,6 +12,7 @@ public class C206_CaseStudyTest {
 	private Student s2;
 	
 	private ArrayList<Student> studentList;
+	private ArrayList<CCA>ccaList;
 	
 	private CCAcategory c1;
 	private CCAcategory c2;
