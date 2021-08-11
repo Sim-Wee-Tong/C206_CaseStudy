@@ -12,6 +12,10 @@ public class C206_CaseStudyTest {
 	private Student s2;
 	
 	private ArrayList<Student> studentList;
+	
+	private CCAcategory c1;
+	private CCAcategory c2;
+	private ArrayList<CCAcategory> categoryList;
 
 	@Before
 	public void setUp() throws Exception {
@@ -19,6 +23,11 @@ public class C206_CaseStudyTest {
 		s2 = new Student(20234, "Xiao Hua", "P4", "W64A", "Desmond Lee", "20234@myrp.edu.sg", 87654321, null);
 		
 		studentList = new ArrayList<Student>();
+		
+		c1 = new CCAcategory("Sports");
+		c2 = new CCAcategory("Music");
+		categoryList = new ArrayList<CCAcategory>();
+
 	}
 
 	@Test
@@ -143,4 +152,37 @@ public class C206_CaseStudyTest {
 		
 		studentList = null;
 	}
+	
+	public void retrieveAllCategoriesTest() {
+		// test whether category list is not null but empty
+		assertNotNull("test if there is a valid CCA category arraylist to retrieve categories from", categoryList);
+		//test if the list of categories retrieved from the CaseStudy is empty 
+		String categories = C206_CaseStudy.retrieveAllCategories(categoryList);
+		String output = "";
+		assertEquals("Check that viewAllCategories", output, categories);
+		//Given an empty list, after adding 2 categories, the size of the list is 2.
+		categoryList.add(c1);
+		categoryList.add(c2);
+		assertEquals(2, categoryList.size());
+		//test if the expected output is same as the list of categories retrieved from the CaseStudy
+		categories = C206_CaseStudy.retrieveAllCategories(categoryList);
+		output = String.format("%s", "Sports");
+		output = String.format("%s", "Music");
+		assertEquals("test that viewAllCategories", output, categories);
+	}
+	public void addCategoryTest() {
+		// test whether category list is not null but empty
+		assertNotNull("test if there is a valid CCA category arraylist to add category to", categoryList);
+		//Given an empty list, after adding 2 categories, the size of the list is 2.
+		categoryList.add(c1);
+		categoryList.add(c2);
+	}
+	public void deleteCategoryTest() {
+		// test whether category list is not null but empty
+		assertNotNull("test if there is a valid CCA category arraylist to delete category from", categoryList);
+		//Given an empty list, after adding 2 categories, the size of the list is 2.
+		
+		C206_CaseStudy.deleteCategory(categoryList, c1.getCategory());
+	}
+
 }
