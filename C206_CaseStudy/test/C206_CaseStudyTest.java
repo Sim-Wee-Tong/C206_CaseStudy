@@ -160,29 +160,34 @@ public class C206_CaseStudyTest {
 		String categories = C206_CaseStudy.retrieveAllCategories(categoryList);
 		String output = "";
 		assertEquals("Check that viewAllCategories", output, categories);
-		//Given an empty list, after adding 2 categories, the size of the list is 2.
+		//Given an empty list, after adding 2 categories, test that the size of the list is 2
 		categoryList.add(c1);
 		categoryList.add(c2);
-		assertEquals(2, categoryList.size());
+		assertEquals("test that categoryList size is 2", 2, categoryList.size());
 		//test if the expected output is same as the list of categories retrieved from the CaseStudy
 		categories = C206_CaseStudy.retrieveAllCategories(categoryList);
 		output = String.format("%s", "Sports");
-		output = String.format("%s", "Music");
+		output += String.format("%s", "Music");
 		assertEquals("test that viewAllCategories", output, categories);
 	}
 	public void addCategoryTest() {
-		// test whether category list is not null but empty
+		// test whether category list is not null 
 		assertNotNull("test if there is a valid CCA category arraylist to add category to", categoryList);
 		//Given an empty list, after adding 2 categories, the size of the list is 2.
 		categoryList.add(c1);
 		categoryList.add(c2);
+		assertEquals("Check that categoryList size is 2", 2, categoryList.size());
 	}
 	public void deleteCategoryTest() {
 		// test whether category list is not null but empty
 		assertNotNull("test if there is a valid CCA category arraylist to delete category from", categoryList);
 		//Given an empty list, after adding 2 categories, the size of the list is 2.
-		
-		C206_CaseStudy.deleteCategory(categoryList, c1.getCategory());
+		C206_CaseStudy.addCategory(categoryList, c1);
+		C206_CaseStudy.addCategory(categoryList, c2);
+		// test that after deleting a category, size of category list is 1
+		categoryList.remove(0);
+	//	C206_CaseStudy.deleteCategory(categoryList);
+		assertEquals("test that categoryList size is 1", 0, categoryList.size());
 	}
 
 }
