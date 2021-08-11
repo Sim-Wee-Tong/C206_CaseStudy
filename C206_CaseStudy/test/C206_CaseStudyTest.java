@@ -195,9 +195,9 @@ public class C206_CaseStudyTest {
 		//Given an empty list, after adding 2 categories, the size of the list is 2.
 		C206_CaseStudy.addCategory(categoryList, c1);
 		C206_CaseStudy.addCategory(categoryList, c2);
+		assertNotNull("test if there is a valid CCA category arraylist to delete category from", categoryList);
 		// test that after deleting a category, size of category list is 1
 		categoryList.remove(0);
-	//	C206_CaseStudy.deleteCategory(categoryList);
 		assertEquals("test that categoryList size is 1", 0, categoryList.size());
 	}
 	@Test
