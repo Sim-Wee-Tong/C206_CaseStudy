@@ -52,7 +52,9 @@ public class C206_CaseStudy {
 					else if (option == 2 ) {
 						// Add CCA
 						System.out.println("Add CCA");
-						C206_CaseStudy.addCCA(ccaList, null);
+						CCA c = inputCCA();
+						C206_CaseStudy.addCCA(ccaList, c);
+						
 					}
 					else if (option == 3) {
 						// Delete CCA
@@ -382,6 +384,12 @@ public class C206_CaseStudy {
 		CCA c = new CCA(title, description, size, day, time,venue,nameOfInst);
 		return c;
 	}
+	public static void addCCA(ArrayList<CCA> ccaList, CCA c) {
+		
+		ccaList.add(c);
+		System.out.println("CCA added");
+	}
+	
 	
 	// =============== DELETE CCA ===============
 	public static void deleteCCA(ArrayList<CCA> ccaList, String string) {
