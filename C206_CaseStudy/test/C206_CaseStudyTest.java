@@ -13,21 +13,31 @@ public class C206_CaseStudyTest {
 	
 	private ArrayList<Student> studentList;
 	private ArrayList<CCA>ccaList;
+	private ArrayList<Student> soccerPendingList;
+	private ArrayList<Student> soccerList;
 	
 	private CCAcategory c1;
 	private CCAcategory c2;
 	private ArrayList<CCAcategory> categoryList;
+	private CCA cca1;
+	private CCA cca2;
+	
 
 	@Before
 	public void setUp() throws Exception {
-		s1 = new Student(20123, "Xiao Ming", "P4", "W64A", "Desmond Lee", "20123@myrp.edu.sg", 98765432, null);
-		s2 = new Student(20234, "Xiao Hua", "P4", "W64A", "Desmond Lee", "20234@myrp.edu.sg", 87654321, null);
+		s1 = new Student(20123, "Xiao Ming", "P4", "W64A", "Desmond Lee", "20123@myrp.edu.sg", 98765432, null,1);
+		s2 = new Student(20234, "Xiao Hua", "P4", "W64A", "Desmond Lee", "20234@myrp.edu.sg", 87654321, null,2);
+		cca1 = new CCA("Soccer", "Kicking ball around", 0, "Wednesday", "3:00pm-4:00pm","School field","Mr Severus Tay");
+		cca2 = new CCA("Bakery", "baking", 0, "Tuesday", "3:00pm-4:00pm","BLK D 03-22","Ms Serious Tay");
 		
 		studentList = new ArrayList<Student>();
 		
 		c1 = new CCAcategory("Sports");
 		c2 = new CCAcategory("Music");
 		categoryList = new ArrayList<CCAcategory>();
+		;
+		soccerPendingList = new ArrayList<Student>();
+		soccerList = new ArrayList<Student>();
 
 	}
 
@@ -190,5 +200,74 @@ public class C206_CaseStudyTest {
 	//	C206_CaseStudy.deleteCategory(categoryList);
 		assertEquals("test that categoryList size is 1", 0, categoryList.size());
 	}
+	@Test
+	public  void checkStudentIDTest() {
+		boolean isStudent = false;
+		int id =20123;
+		int CCAID = 1;
+		studentList.add(s1);
+		studentList.add(s2);
+		
+	
+		
+		for (int i = 0; i < studentList.size(); i++) {
+			if (studentList.get(i).getStudentID() == id && studentList.get(i).getCCAID()== CCAID) {
+				isStudent = true;
+				System.out.println("The student ID entered is correct");
+			}
+		}
+		
+		if (isStudent == false) {
+			System.out.println("The student ID entered is not correct");
+		}
+		assertEquals("Check if both id and CCAID are both exist in the studentList",true,isStudent );
+		
+	}
+	@Test
+	  public void addStudentCCA( ) {
+		   String output=String.format("%-10s\n", "Student ID");
+		   boolean isAdded = false;
+		   soccerPendingList.add(s1);
+	   for(int i = 0; i<soccerPendingList.size();i++) {
+		  output+= String.format("%-10s\n", soccerPendingList.get(i));
+		   
+	   }
+	   System.out.println(output);
+	   int input= Helper.readInt("Please select student's ID to add into your CCA");
+	   for(int i = 0; i<soccerPendingList.size();i++) {
+		   
+			  output+= String.format("%-10s\n", soccerPendingList.get(i));
+			  if(input==soccerPendingList.get(i).getStudentID()){
+				  
+				  ArrayList<Student> a=soccerPendingList;
+				  soccerList.add(new Student(a.get(i).getStudentID(),a.get(i).getName(),a.get(i).getGrade(),a.get(i).getClassroom(),a.get(i).getTeacher(),a.get(i).getStudentEmail(),a.get(i).getContactNum(),a.get(i).getCCA(),a.get(i).getCCAID()));
+				  soccerPendingList.remove(i);
+				  isAdded = true;
+				  System.out.println("Student Added!");
+				  
+			  }
+		   }
+	   if(isAdded == false) {
+		   System.out.println("Student Not Added!");
+		   assertEquals("Test that there is an existing student in the pendingList and is added to the soccerlist",true,isAdded );
+	   }
+	  }
+	@Test
+	   public void viewStudentSoccer() {
+		soccerList.add(s1);
+			String output = String.format("%-10s %-30s %-5s %-5s %-30s %-20s %-10s %-15s %-15s\n", "STUDENT ID", "STUDENT NAME",
+					"GRADE", "CLASS", "TEACHER NAME", "EMAIL", "CONTACT NO", "CCA", "CCA REGISTRATION ID");
+		   for(int i = 0; i<soccerList.size();i++) {
+			    output += String.format("%-10d %-30s %-5s %-5s %-30s %-20s %-10d %-15s %-15d\n", soccerList.get(i).getStudentID(),
+			    		soccerList.get(i).getName(), soccerList.get(i).getGrade(), soccerList.get(i).getClassroom(),
+			    		soccerList.get(i).getTeacher(), soccerList.get(i).getStudentEmail(), soccerList.get(i).getContactNum(),
+			    		soccerList.get(i).getCCA(),soccerList.get(i).getCCAID());				  
+			    		System.out.println(output);
+					  
+				  
+			   }
+		   assertEquals("Test that all soccerList size is 1",1,soccerList.size());
+	   }
+
 
 }
