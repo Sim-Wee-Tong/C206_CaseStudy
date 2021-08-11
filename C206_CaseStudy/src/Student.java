@@ -9,8 +9,9 @@ public class Student {
 	private String StudentEmail;
 	private int ContactNum;
 	private String CCA;
+	private int CCAID;
 	
-	public Student(int studentID, String name, String grade, String classroom, String teacher, String studentEmail, int contactNum, String cca) {
+	public Student(int studentID, String name, String grade, String classroom, String teacher, String studentEmail, int contactNum, String cca, int ccaid) {
 		super();
 		StudentID = studentID;
 		Name = name;
@@ -20,6 +21,11 @@ public class Student {
 		StudentEmail = studentEmail;
 		ContactNum = contactNum;
 		CCA = cca;
+		CCAID = ccaid;
+	}
+
+	public int getCCAID() {
+		return CCAID;
 	}
 
 	public int getStudentID() {
