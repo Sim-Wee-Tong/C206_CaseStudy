@@ -363,16 +363,16 @@ public class C206_CaseStudy {
 // ============================== CCA  ==============================
 	public static String retrieveAllCCA(ArrayList<CCA> ccaList) {
 		C206_CaseStudy.setHeader("VIEW ALL CCA");
-		String output = String.format("%-10s %-10s %-10s %-10s %-10s %-10s %-10s", "Title", "Description", "Size", "Day","Time", "Venue", "Name of instructor");
+		String output = String.format("%-10s %-20s %-5s %-15s %-17s %-13s %-10s", "Title", "Description", "Size", "Day","Time", "Venue", "Name of instructor\n");
 		for (CCA e : ccaList) {
-			output += String.format("%-10s %-10s %-10d %-10s %-10s %-10s %-10s", e.getTitle(),e.getDescription(),e.getSize(),e.getDayOfW(),e.getTime(),e.getVenue(),e.getInstructorName());
+			output += String.format("%-10s %-20s %-5d %-15s %-17s %-15s %-10s", e.getTitle(),e.getDescription(),e.getSize(),e.getDayOfW(),e.getTime(),e.getVenue(),e.getInstructorName());
 		}
-		//System.out.println(output);
+		System.out.println(output);
 		return output;
 	}
 	
 	// =============== ADD CCA ===============
-	public static CCA addCCA(ArrayList<CCA> ccaList, CCA cca1) {
+	public static CCA inputCCA() {
 		String title = Helper.readString("Enter CCA name: ");
 		String description = Helper.readString("Enter Description: ");
 		int size = Helper.readInt("Enter size: ");
