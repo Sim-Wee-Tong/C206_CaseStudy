@@ -12,6 +12,9 @@ public class C206_CaseStudy {
 		studentList.add(new Student(20123, "Xiao Ming", "P4", "W64A", "Desmond Lee", "20123@myrp.edu.sg", 98765432));
 		studentList.add(new Student(20234, "Xiao Hua", "P4", "W64A", "Desmond Lee", "20234@myrp.edu.sg", 87654321));
 		
+		parentList.add(new Parent(21123, "Da Ming", "P3", "W65A", "Candice", "Joe", "JoeMa@gmail.com", 97538642));
+		parentList.add(new Parent(21234, "Da Hua", "P3", "W65A", "Candice", "Wendy", "WendyZ@gmail.com", 98647532));
+		
 		categoryList.add(new CCAcategory("Sports"));
 		categoryList.add(new CCAcategory("Art"));
 		categoryList.add(new CCAcategory("Music"));
@@ -209,7 +212,7 @@ public class C206_CaseStudy {
 		String output = "";
 		
 		for (int i = 0; i < parentList.size(); i++) {
-			output += String.format("%-10d %-30s %-5s %-5s %-30s %-30s %-20s %-10d\n", parentList.get(i).getStudentID(), 
+			output += String.format("%-10d %-30s %-5s %-5s %-30s %-30s %-20s %-10d \n", parentList.get(i).getStudentID(), 
 					parentList.get(i).getStudentName(), parentList.get(i).getGrade(), parentList.get(i).getClassroom(),
 					parentList.get(i).getTeacher(), parentList.get(i).getParentName(), parentList.get(i).getParentEmail(),
 					parentList.get(i).getParentNum());
@@ -219,7 +222,7 @@ public class C206_CaseStudy {
 	
 	public static void viewAllParent(ArrayList<Parent> parentList) {
 		C206_CaseStudy.setHeader("VIEW ALL PARENTS");
-		String output = String.format("%-10d %-30s %-5s %-5s %-30s %-30s %-20s %-10d\\n", "STUDENT ID", "STUDENT NAME",
+		String output = String.format("%-10s %-30s %-5s %-5s %-30s %-30s %-20s %-10s \n", "STUDENT ID", "STUDENT NAME",
 				"GRADE", "CLASS", "TEACHER NAME", "PARENT NAME", "EMAIL", "CONTACT NO");
 		output += retrieveAllParent(parentList);
 		System.out.println(output);
