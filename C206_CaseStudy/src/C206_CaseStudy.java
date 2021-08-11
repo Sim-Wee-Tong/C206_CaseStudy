@@ -15,6 +15,9 @@ public class C206_CaseStudy {
 		parentList.add(new Parent(21123, "Da Ming", "P3", "W65A", "Candice", "Joe", "JoeMa@gmail.com", 97538642));
 		parentList.add(new Parent(21234, "Da Hua", "P3", "W65A", "Candice", "Wendy", "WendyZ@gmail.com", 98647532));
 		
+		ccaList.add(new CCA("Soccer", "Kicking ball around", 0, "Wednesday", "3:00pm-4:00pm","School field","Mr Severus Tay"));
+
+		
 		categoryList.add(new CCAcategory("Sports"));
 		categoryList.add(new CCAcategory("Art"));
 		categoryList.add(new CCAcategory("Music"));
@@ -38,16 +41,19 @@ public class C206_CaseStudy {
 					
 					if (option == 1) {
 						// View all CCA + Category
+						C206_CaseStudy.viewAllCCA(ccaList);
 //						System.out.println("View all CCA + Category");
 						C206_CaseStudy.viewAllCategories(categoryList);
 					}
 					else if (option == 2 ) {
 						// Add CCA
 						System.out.println("Add CCA");
+						C206_CaseStudy.addCCA(ccaList);
 					}
 					else if (option == 3) {
 						// Delete CCA
 						System.out.println("Delete CCA");
+						C206_CaseStudy.deleteCCA(ccaList);
 					}
 					else if (option == 4) {
 						// Add CCA Category
