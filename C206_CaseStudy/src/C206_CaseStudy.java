@@ -356,18 +356,19 @@ public class C206_CaseStudy {
 		}
 		
 	}
-	// ============================== CCA  ==============================
-	public static void viewAllCCA(ArrayList<CCA> ccaList) {
+// ============================== CCA  ==============================
+	public static String retrieveAllCCA(ArrayList<CCA> ccaList) {
 		C206_CaseStudy.setHeader("VIEW ALL CCA");
-		String output = String.format("%-20s %-30s %-10s %-10s %-15s %-20s %-20s \n", "Title", "Description", "Size", "Day","Time", "Venue", "Name of instructor");
+		String output = String.format("%-10s %-10s %-10s %-10s %-10s %-10s %-10s", "Title", "Description", "Size", "Day","Time", "Venue", "Name of instructor");
 		for (CCA e : ccaList) {
-			output += String.format("%-20s %-30s %-10d %-10s %-15s %-20s %-20s \n", e.getTitle(),e.getDescription(),e.getSize(),e.getDayOfW(),e.getTime(),e.getVenue(),e.getInstructorName());
+			output += String.format("%-10s %-10s %-10d %-10s %-10s %-10s %-10s", e.getTitle(),e.getDescription(),e.getSize(),e.getDayOfW(),e.getTime(),e.getVenue(),e.getInstructorName());
 		}
-		System.out.println(output);
+		//System.out.println(output);
+		return output;
 	}
 	
 	// =============== ADD CCA ===============
-	public static void addCCA(ArrayList<CCA> ccaList) {
+	public static void addCCA(ArrayList<CCA> ccaList, CCA c) {
 		String title = Helper.readString("Enter CCA name: ");
 		String description = Helper.readString("Enter Description: ");
 		int size = Helper.readInt("Enter size: ");
@@ -376,12 +377,12 @@ public class C206_CaseStudy {
 		String venue = Helper.readString("Enter venue: ");
 		String nameOfInst = Helper.readString("Enter Name of Instructor: ");
 		
-		ccaList.add(new CCA(title,description,size,day,time,venue,nameOfInst));
+		ccaList.add(c);
 		System.out.println("CCA aaded!");
 	}
 	
 	// =============== DELETE CCA ===============
-	public static void deleteCCA(ArrayList<CCA> ccaList) {
+	public static void deleteCCA(ArrayList<CCA> ccaList, String string) {
 		String cca = Helper.readString("Enter CCA > ");
 		for (CCA e : ccaList) {
 			if (e.getTitle() == cca) {
@@ -392,6 +393,7 @@ public class C206_CaseStudy {
 			}
 		}
 	}
+
 	// ============================== CCA CATEGORY ==============================
 
 	// =============== VIEW ALL CATEGORIES ===============
