@@ -393,13 +393,13 @@ public class C206_CaseStudy {
 	public static String retrieveAllCategories(ArrayList<CCAcategory> categoryList) {
 		String output = "";
 		for (int i = 0; i < categoryList.size(); i++) {
-			output += String.format("", categoryList.get(i).getCategory());
+			output += String.format("%s\n", categoryList.get(i).getCategory());
 		}
 		return output;
 	}
 	public static void viewAllCategories(ArrayList<CCAcategory> categoryList) {
 		C206_CaseStudy.setHeader("VIEW ALL CATEGORIES");
-		String output = String.format("", "CATEGORIES: ");
+		String output = String.format("%s", "");
 		output += retrieveAllCategories(categoryList);
 		System.out.println(output);
 	}
@@ -421,7 +421,7 @@ public class C206_CaseStudy {
 		for (int i = 0; i < categoryList.size(); i++) {
 			String ccaCategory = categoryList.get(i).getCategory();
 			if (category.equalsIgnoreCase(ccaCategory)) {
-//				categoryList.get(i)
+				categoryList.remove(i);
 				isDeleted = true;
 			}
 		}
