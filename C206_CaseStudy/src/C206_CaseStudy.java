@@ -387,7 +387,7 @@ public class C206_CaseStudy {
 	public static String retrieveAllCategories(ArrayList<CCAcategory> categoryList) {
 		String output = "";
 		for (int i = 0; i < categoryList.size(); i++) {
-			output += String.format("%-8s", categoryList.get(i).getCategory());
+			output += String.format("", categoryList.get(i).getCategory());
 		}
 		return output;
 	}
@@ -410,16 +410,27 @@ public class C206_CaseStudy {
 	}
 	
 	// =============== DELETE CATEGORY ===============
+	public static boolean doDeleteCategory(ArrayList<CCAcategory> categoryList, String category) {
+		Boolean isDeleted = false;
+		for (int i = 0; i < categoryList.size(); i++) {
+			String ccaCategory = categoryList.get(i).getCategory();
+			if (category.equalsIgnoreCase(ccaCategory)) {
+//				categoryList.get(i)
+				isDeleted = true;
+			}
+		}
+		return isDeleted;
+	}
+	
 	public static void deleteCategory(ArrayList<CCAcategory> categoryList) {
 		C206_CaseStudy.viewAllCategories(categoryList);
 		String category = Helper.readString("Enter category to delete > ");
-		for (int i = 0; i < categoryList.size(); i++) {
-			if (categoryList.get(i).getCategory().equals(category)) {
-				categoryList.remove(i);
-				System.out.println("Category '" + category + "' deleted");
-			} else {
-				System.out.println("There is no such category");
-			}
+		Boolean isDeleted = doDeleteCategory(categoryList, category);
+
+		if (isDeleted == false) {
+			System.out.println("There is no such category");
+		} else {
+			System.out.println("Category '" + category + "' deleted");
 		}
 	}
 }
