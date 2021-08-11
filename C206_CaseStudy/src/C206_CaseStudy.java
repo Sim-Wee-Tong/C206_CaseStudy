@@ -45,17 +45,19 @@ public class C206_CaseStudy {
 					option = Helper.readInt("Enter option > ");
 					
 					if (option == 1) {
-						// View all CCA + Category
-						C206_CaseStudy.viewAllCCA(ccaList);
+						C206_CaseStudy.retrieveAllCCA(ccaList);
+//						System.out.println("View all CCA + Category");
 						C206_CaseStudy.viewAllCategories(categoryList);
 					}
 					else if (option == 2 ) {
 						// Add CCA
-						C206_CaseStudy.addCCA(ccaList);
+						System.out.println("Add CCA");
+						C206_CaseStudy.addCCA(ccaList, null);
 					}
 					else if (option == 3) {
 						// Delete CCA
-						C206_CaseStudy.deleteCCA(ccaList);
+						System.out.println("Delete CCA");
+						C206_CaseStudy.deleteCCA(ccaList, null);
 					}
 					else if (option == 4) {
 						// Add CCA Category
@@ -368,7 +370,7 @@ public class C206_CaseStudy {
 	}
 	
 	// =============== ADD CCA ===============
-	public static void addCCA(ArrayList<CCA> ccaList, CCA c) {
+	public static CCA addCCA(ArrayList<CCA> ccaList, CCA cca1) {
 		String title = Helper.readString("Enter CCA name: ");
 		String description = Helper.readString("Enter Description: ");
 		int size = Helper.readInt("Enter size: ");
@@ -377,8 +379,8 @@ public class C206_CaseStudy {
 		String venue = Helper.readString("Enter venue: ");
 		String nameOfInst = Helper.readString("Enter Name of Instructor: ");
 		
-		ccaList.add(c);
-		System.out.println("CCA aaded!");
+		CCA c = new CCA(title, description, size, day, time,venue,nameOfInst);
+		return c;
 	}
 	
 	// =============== DELETE CCA ===============
@@ -393,7 +395,6 @@ public class C206_CaseStudy {
 			}
 		}
 	}
-
 	// ============================== CCA CATEGORY ==============================
 
 	// =============== VIEW ALL CATEGORIES ===============
