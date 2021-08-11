@@ -7,6 +7,7 @@ public class C206_CaseStudy {
 
 		ArrayList<Student> studentList = new ArrayList<Student>();
 		ArrayList<Parent> parentList = new ArrayList<Parent>();
+		ArrayList<CCA> ccaList = new ArrayList<CCA>();
 		ArrayList<CCAcategory> categoryList = new ArrayList<CCAcategory>();
 
 		studentList.add(new Student(20123, "Xiao Ming", "P4", "W64A", "Desmond Lee", "20123@myrp.edu.sg", 98765432));
@@ -16,7 +17,6 @@ public class C206_CaseStudy {
 		parentList.add(new Parent(21234, "Da Hua", "P3", "W65A", "Candice", "Wendy", "WendyZ@gmail.com", 98647532));
 		
 		ccaList.add(new CCA("Soccer", "Kicking ball around", 0, "Wednesday", "3:00pm-4:00pm","School field","Mr Severus Tay"));
-
 		
 		categoryList.add(new CCAcategory("Sports"));
 		categoryList.add(new CCAcategory("Art"));
@@ -354,9 +354,9 @@ public class C206_CaseStudy {
 	// ============================== CCA  ==============================
 	public static void viewAllCCA(ArrayList<CCA> ccaList) {
 		C206_CaseStudy.setHeader("VIEW ALL CCA");
-		String output = String.format("%-10s %-10s %-10s %-10s %-10s %-10s %-10s", "Title", "Description", "Size", "Day","Time", "Venue", "Name of instructor");
+		String output = String.format("%-20s %-30s %-10s %-10s %-15s %-20s %-20s \n", "Title", "Description", "Size", "Day","Time", "Venue", "Name of instructor");
 		for (CCA e : ccaList) {
-			output += String.format("%-10s %-10s %-10d %-10s %-10s %-10s %-10s", e.getTitle(),e.getDescription(),e.getSize(),e.getDayOfW(),e.getTime(),e.getVenue(),e.getInstructorName());
+			output += String.format("%-20s %-30s %-10d %-10s %-15s %-20s %-20s \n", e.getTitle(),e.getDescription(),e.getSize(),e.getDayOfW(),e.getTime(),e.getVenue(),e.getInstructorName());
 		}
 		System.out.println(output);
 	}
