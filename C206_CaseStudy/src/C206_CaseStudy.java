@@ -32,7 +32,7 @@ public class C206_CaseStudy {
 				C206_CaseStudy.coordinatorMenu(); //Displays options for CCA Coordinator
 				int option = 0;
 				
-				while (option != 6) {
+				while (option != 9) {
 					
 					option = Helper.readInt("Enter option > ");
 					
