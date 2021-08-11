@@ -52,7 +52,7 @@ public class C206_CaseStudyTest {
 		assertEquals("Check that Camcorder arraylist size is 2", 2, ccaList.size());
 		assertSame("Check that Camcorder is added", cca2, ccaList.get(1));
 	}
-	@Test
+@Test
 	public void retrieveAllCCA() {
 		// Test if Item list is not null but empty -boundary
 		assertNotNull("Test if there is valid CCA arraylist to retrieve item", ccaList);
@@ -60,12 +60,12 @@ public class C206_CaseStudyTest {
 		//test if the list of cca retrieved from the casestudy is empty - boundary
 		String allCCA= C206_CaseStudy.retrieveAllCCA(ccaList);
 		String testOutput = "";
-		assertEquals("Check that ViewAllCamcorderlist", testOutput, allCCA);
+		assertEquals("Check that ViewAllCCCAlist", testOutput, allCCA);
 		
 		//Given an empty list, after adding 2 items, test if the size of the list is 2 - normal
 		C206_CaseStudy.addCCA(ccaList, cca1);
 		C206_CaseStudy.addCCA(ccaList, cca2);
-		assertEquals("Test that Camcorder arraylist size is 2", 2, ccaList.size());
+		assertEquals("Test that CCA arraylist size is 2", 2, ccaList.size());
 		
 		//test if the expected output string same as the list of cca retrieved from the casestudy	
 		allCCA = C206_CaseStudy.retrieveAllCCA(ccaList);
