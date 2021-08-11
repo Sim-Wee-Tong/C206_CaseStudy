@@ -9,9 +9,14 @@ public class C206_CaseStudy {
 		ArrayList<Parent> parentList = new ArrayList<Parent>();
 		ArrayList<CCA> ccaList = new ArrayList<CCA>();
 		ArrayList<CCAcategory> categoryList = new ArrayList<CCAcategory>();
+		
+        ArrayList<ArrayList> SportsList = new ArrayList<ArrayList>();
+        ArrayList<ArrayList> ArtList = new ArrayList<ArrayList>();
+        ArrayList<ArrayList> MusicList = new ArrayList<ArrayList>();
+        ArrayList<ArrayList> FoodList = new ArrayList<ArrayList>();
 
-		studentList.add(new Student(20123, "Xiao Ming", "P4", "W64A", "Desmond Lee", "20123@myrp.edu.sg", 98765432));
-		studentList.add(new Student(20234, "Xiao Hua", "P4", "W64A", "Desmond Lee", "20234@myrp.edu.sg", 87654321));
+		studentList.add(new Student(20123, "Xiao Ming", "P4", "W64A", "Desmond Lee", "20123@myrp.edu.sg", 98765432, null));
+		studentList.add(new Student(20234, "Xiao Hua", "P4", "W64A", "Desmond Lee", "20234@myrp.edu.sg", 87654321, null));
 		
 		parentList.add(new Parent(21123, "Da Ming", "P3", "W65A", "Candice", "Joe", "JoeMa@gmail.com", 97538642));
 		parentList.add(new Parent(21234, "Da Hua", "P3", "W65A", "Candice", "Wendy", "WendyZ@gmail.com", 98647532));
@@ -42,38 +47,36 @@ public class C206_CaseStudy {
 					if (option == 1) {
 						// View all CCA + Category
 						C206_CaseStudy.viewAllCCA(ccaList);
-//						System.out.println("View all CCA + Category");
 						C206_CaseStudy.viewAllCategories(categoryList);
 					}
 					else if (option == 2 ) {
 						// Add CCA
-						System.out.println("Add CCA");
 						C206_CaseStudy.addCCA(ccaList);
 					}
 					else if (option == 3) {
 						// Delete CCA
-						System.out.println("Delete CCA");
 						C206_CaseStudy.deleteCCA(ccaList);
 					}
 					else if (option == 4) {
 						// Add CCA Category
-//						System.out.println("Add CCA Category");
 						CCAcategory c = inputCategory();
 						C206_CaseStudy.addCategory(categoryList, c);
 					}
 					else if (option == 5) {
 						// Delete CCA Category
-//						System.out.println("Delete CCA Category");
 						C206_CaseStudy.deleteCategory(categoryList);
 					}
 					else if (option == 6) {
-						// Add parent account
+						// Add parent/student to CCA
+						C206_CaseStudy.viewAllStudent(studentList);
+						int studentID = Helper.readInt("Enter student ID > ");
+						C206_CaseStudy.addStudentCCA(studentID, studentList, SportsList, ArtList, MusicList, FoodList);
 					}
 					else if (option == 7) {
-						// View registered parents
+						// View registered students
 					}
 					else if (option == 8) {
-						// Delete parent
+						// Delete student
 					}
 					else if (option == 9){
 						// Quit CCA
@@ -292,17 +295,18 @@ public class C206_CaseStudy {
 		String output = "";
 		
 		for (int i = 0; i < studentList.size(); i++) {
-			output += String.format("%-10d %-30s %-5s %-5s %-30s %-20s %-10d\n", studentList.get(i).getStudentID(),
+			output += String.format("%-10d %-30s %-5s %-5s %-30s %-20s %-10d %-15s\n", studentList.get(i).getStudentID(),
 					studentList.get(i).getName(), studentList.get(i).getGrade(), studentList.get(i).getClassroom(),
-					studentList.get(i).getTeacher(), studentList.get(i).getStudentEmail(), studentList.get(i).getContactNum());
+					studentList.get(i).getTeacher(), studentList.get(i).getStudentEmail(), studentList.get(i).getContactNum(),
+					studentList.get(i).getCCA());
 		}
 		return output;
 	}
 
 	public static void viewAllStudent(ArrayList<Student> studentList) {
 		C206_CaseStudy.setHeader("VIEW ALL STUDENTS");
-		String output = String.format("%-10s %-30s %-5s %-5s %-30s %-20s %-10s\n", "STUDENT ID", "STUDENT NAME",
-				"GRADE", "CLASS", "TEACHER NAME", "EMAIL", "CONTACT NO");
+		String output = String.format("%-10s %-30s %-5s %-5s %-30s %-20s %-10s %-15s\n", "STUDENT ID", "STUDENT NAME",
+				"GRADE", "CLASS", "TEACHER NAME", "EMAIL", "CONTACT NO", "CCA");
 		output += retrieveAllStudent(studentList);
 		System.out.println(output);
 	}	
@@ -316,8 +320,9 @@ public class C206_CaseStudy {
 		String teachName = Helper.readString("Enter Teacher's Name > ");
 		String email = Helper.readString("Enter Student Email ({studentID}@myrp.edu.sg) > ");
 		int contactNum = Helper.readInt("Enter Contact Number > ");
+		String cca = Helper.readString("Enter CCA (If not in a CCA, put 'null')> ");
 		
-		Student s = new Student(studentID, studentName, grade, classroom, teachName, email, contactNum);
+		Student s = new Student(studentID, studentName, grade, classroom, teachName, email, contactNum, cca);
 		return s;
 	}
 	
@@ -439,4 +444,53 @@ public class C206_CaseStudy {
 			System.out.println("Category '" + category + "' deleted");
 		}
 	}
+	
+	// ================ CHECK STUDENT ID ==============
+	
+	public static void checkStudentID(int id, ArrayList<Student> studentList) {
+		boolean isStudent = false;
+		
+		for (int i = 0; i < studentList.size(); i++) {
+			if (studentList.get(i).getStudentID() == id) {
+				isStudent = true;
+			}
+		}
+		
+		if (isStudent == false) {
+			System.out.println("The student ID entered is not correct");
+		}
+		
+	}
+	
+ //================ ADD STUDENT TO CCA ==============
+    public static void setStudentCCA(ArrayList<Student> studentList, int studentID) {
+    	for (int i = 0; i < studentList.size(); i++) {
+    		if (studentList.get(i).getStudentID() == studentID) {
+    			
+    		}
+    	}
+    }
+    
+    public static void addStudentCCA(int studentID,ArrayList<Student> studentList,ArrayList<ArrayList> sportsList,ArrayList<ArrayList> artList,ArrayList<ArrayList> musicList,ArrayList<ArrayList> foodList) {
+        String input = Helper.readString("Which cca would you like to join?");
+        if(input.equalsIgnoreCase("Sports")) {
+            sportsList.addAll(new ArrayList(studentID));
+        	for (int i = 0; i < studentList.size(); i++) {
+        		if (studentList.get(i).getStudentID() == studentID) {
+        			studentList.get(i).setCCA(input);
+        		}
+        	}
+
+        }else if(input.equalsIgnoreCase("Art")) {
+            artList.addAll(new ArrayList(studentID));
+        }else if(input.equalsIgnoreCase("Music")) {
+            musicList.addAll(new ArrayList(studentID));
+
+        }else if(input.equalsIgnoreCase("Food")) {
+            foodList.addAll(new ArrayList(studentID));
+
+        }
+        
+    }
+	
 }

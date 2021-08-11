@@ -8,8 +8,9 @@ public class Student {
 	private String Teacher;
 	private String StudentEmail;
 	private int ContactNum;
+	private String CCA;
 	
-	public Student(int studentID, String name, String grade, String classroom, String teacher, String studentEmail, int contactNum) {
+	public Student(int studentID, String name, String grade, String classroom, String teacher, String studentEmail, int contactNum, String cca) {
 		super();
 		StudentID = studentID;
 		Name = name;
@@ -18,6 +19,7 @@ public class Student {
 		Teacher = teacher;
 		StudentEmail = studentEmail;
 		ContactNum = contactNum;
+		CCA = cca;
 	}
 
 	public int getStudentID() {
@@ -74,6 +76,14 @@ public class Student {
 
 	public void setContactNum(int contactNum) {
 		this.ContactNum = contactNum;
+	}
+	
+	public String getCCA() {
+		return CCA;
+	}
+	
+	public void setCCA(String cca) {
+		this.CCA = cca;
 	}
 	
 }
