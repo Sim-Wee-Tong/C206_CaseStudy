@@ -80,6 +80,7 @@ public class C206_CaseStudy {
 					}
 					else if (option == 7) {
 						// View registered students
+						 viewStudentSoccer(SoccerList );
 					}
 					else if (option == 8) {
 						// Delete student
@@ -523,5 +524,18 @@ public class C206_CaseStudy {
         
      
         }
+   public static void viewStudentSoccer(ArrayList<Student> soccerList ) {
+		String output = String.format("%-10s %-30s %-5s %-5s %-30s %-20s %-10s %-15s %-15\n", "STUDENT ID", "STUDENT NAME",
+				"GRADE", "CLASS", "TEACHER NAME", "EMAIL", "CONTACT NO", "CCA", "CCA REGISTRATION ID");
+	   for(int i = 0; i<soccerList.size();i++) {
+		    output += String.format("%-10d %-30s %-5s %-5s %-30s %-20s %-10d %-15s %-15d\n", soccerList.get(i).getStudentID(),
+		    		soccerList.get(i).getName(), soccerList.get(i).getGrade(), soccerList.get(i).getClassroom(),
+		    		soccerList.get(i).getTeacher(), soccerList.get(i).getStudentEmail(), soccerList.get(i).getContactNum(),
+		    		soccerList.get(i).getCCA(),soccerList.get(i).getCCAID());				  
+		    		System.out.println(output);
+				  
+			  
+		   }
+   }
 	
 }
