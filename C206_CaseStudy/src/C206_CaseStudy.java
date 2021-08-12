@@ -37,7 +37,7 @@ public class C206_CaseStudy {
 			
 			int role = 0;
 			
-			while (role != 4) {
+			while (role != 3) {
 				C206_CaseStudy.roleMenu(); // Displays role for CCA Coordinator and Parent/Student
 				role = Helper.readInt("Enter role > ");
 				
@@ -99,40 +99,6 @@ public class C206_CaseStudy {
 				}
 				
 				else if (role == 2) {
-					// Parent role
-					System.out.println("Parent");
-					C206_CaseStudy.parentMenu(); // Displays menu for parents 
-					
-					int option = 0;
-					
-					while (option != 4) {
-						
-						option = Helper.readInt("Enter option > ");
-						
-						if (option == 1) {
-							// View all parent
-							C206_CaseStudy.viewAllParent(parentList);
-						}
-						else if (option == 2) {
-							// Add parent
-							Parent p = inputParent();
-							C206_CaseStudy.addParent(parentList, p);
-						}
-						else if (option == 3) {
-							// Delete parent
-							C206_CaseStudy.removeParent(parentList);
-						}
-						else if (option == 4) {
-							// Quit
-							System.out.println("Returning to selection page...");
-						}
-						else {
-							System.out.println("Invalid Option!");
-						}
-					}
-	
-				}		
-				else if (role == 3) {
 					// Student role
 					
 	//				C206_CaseStudy.studentMenu(); // Displays menu for students
@@ -179,7 +145,7 @@ public class C206_CaseStudy {
 					
 	
 				}
-				else if (role == 4) {
+				else if (role == 3) {
 					System.out.println("Thank you for using CCA Registration System!");
 				}
 				else {
@@ -200,7 +166,6 @@ public class C206_CaseStudy {
 		C206_CaseStudy.setHeader("LOGIN");
 		System.out.println("1. CCA Coordinator");
 		System.out.println("2. Students");
-		System.out.println("3. Student");
 		System.out.println("4. Quit");
 	}
 	
@@ -217,98 +182,16 @@ public class C206_CaseStudy {
 		System.out.println("9. Quit");
 	}
 	
-	public static void parentMenu() {
-		C206_CaseStudy.setHeader("PARENT");
-		System.out.println("1. View all student details (For parents)");
-		System.out.println("2. Add student details");
-		System.out.println("3. Delete student details");
-		System.out.println("4. Quit");
-	}
-	
 	public static void studentMenu() {
 		C206_CaseStudy.setHeader("STUDENT");
 		System.out.println("1. View all student details");
 		System.out.println("2. Join a CCA");
-		System.out.println("3. Delete student details");
+		System.out.println("3. Leave a CCA");
 		System.out.println("4. Quit");
 
 	}
 
-	// ============================== PARENT ==============================
-	
-	// =============== VIEW ALL PARENT ===============
-	public static String retrieveAllParent(ArrayList<Parent> parentList) {
-		String output = "";
-		
-		for (int i = 0; i < parentList.size(); i++) {
-			output += String.format("%-10d %-30s %-5s %-5s %-30s %-30s %-20s %-10d \n", parentList.get(i).getStudentID(), 
-					parentList.get(i).getStudentName(), parentList.get(i).getGrade(), parentList.get(i).getClassroom(),
-					parentList.get(i).getTeacher(), parentList.get(i).getParentName(), parentList.get(i).getParentEmail(),
-					parentList.get(i).getParentNum());
-		}
-		return output;
-	}
-	
-	public static void viewAllParent(ArrayList<Parent> parentList) {
-		C206_CaseStudy.setHeader("VIEW ALL PARENTS");
-		String output = String.format("%-10s %-30s %-5s %-5s %-30s %-30s %-20s %-10s \n", "STUDENT ID", "STUDENT NAME",
-				"GRADE", "CLASS", "TEACHER NAME", "PARENT NAME", "EMAIL", "CONTACT NO");
-		output += retrieveAllParent(parentList);
-		System.out.println(output);
-	}
-	
-	// =============== ADD PARENT ===============
-	public static Parent inputParent() {
-		int studentID = Helper.readInt("Enter Student ID > ");
-		String studentName = Helper.readString("Enter Student Name > ");
-		String grade = Helper.readString("Enter Grade (P1/P2/P3) > ");
-		String classroom = Helper.readString("Enter classroom > ");
-		String teachName = Helper.readString("Enter Teacher's Name > ");
-		String parentName = Helper.readString("Enter Parent'S Name > ");
-		String email = Helper.readString("Enter Parent Email > ");
-		int contactNum = Helper.readInt("Enter Contact Number > ");
-		
-		Parent p = new Parent(studentID, studentName, grade, classroom, teachName, parentName, email, contactNum);
-		return p;
-	}
-	
-	public static void addParent(ArrayList<Parent> parentList, Parent p) {
-		parentList.add(p);
-		for (int i = 0; i < parentList.size(); i++) {
-			if (parentList.get(i).getGrade().equals("P1")||
-					parentList.get(i).getGrade().equals("P2")||
-					parentList.get(i).getGrade().equals("P3")) {
-				System.out.println("Student added!");
-			}
-			else {
-				parentList.remove(i);
-				System.out.println("Invalid grade!");
-			}
-
-		}
-		
-	}
-	
-	// =============== DELETE PARENT ===============
-	public static void removeParent(ArrayList<Parent> parentList) {
-		C206_CaseStudy.viewAllParent(parentList);
-		
-		int studentID = Helper.readInt("Enter Student ID > ");
-		
-		for (int i = 0; i < parentList.size(); i++) {
-			if (parentList.get(i).getStudentID() == studentID) {
-				System.out.println("Student removed!");
-				parentList.remove(i);
-			}
-			else {
-				System.out.println("Invalid ID!");
-			}
-		}
-		
-	}
-
-	
-	// ============================== STUDENT ==============================
+	// ============================== STUDENT/PARENT ==============================
 	
 	// =============== VIEW ALL STUDENT ===============
 	public static String retrieveAllStudent(ArrayList<Student> studentList) {
@@ -511,7 +394,7 @@ public class C206_CaseStudy {
 	
 	// ================ CHECK STUDENT ID <INCLUDES CCAID> ==============
 	
-//	public static void checkStudentID(int id, ArrayList<Student> studentList, int CCAID) {
+//	public static Boolean checkStudentID(int id, ArrayList<Student> studentList, int CCAID) {
 //		boolean isStudent = false;
 //		
 //		for (int i = 0; i < studentList.size(); i++) {
@@ -523,6 +406,8 @@ public class C206_CaseStudy {
 //		if (isStudent == false) {
 //			System.out.println("The student ID entered is not correct");
 //		}
+//	
+//		return isStudent;
 //		
 //	}
 	
