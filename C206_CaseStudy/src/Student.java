@@ -28,8 +28,8 @@ public class Student {
 		return CCAID;
 	}
 	
-	public void setCCAID(int CCAID) {
-		
+	public void setCCAID(int ccaid) {
+		CCAID = ccaid;
 	}
 
 
