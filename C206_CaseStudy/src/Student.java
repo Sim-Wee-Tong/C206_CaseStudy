@@ -10,6 +10,8 @@ public class Student {
 	private int ContactNum;
 	private String CCA;
 	private int CCAID;
+	private String ParentName;
+	private String ParentEmail;
 	
 	public Student(int studentID, String name, String grade, String classroom, String teacher, String studentEmail, int contactNum, String cca, int ccaid) {
 		super();
@@ -22,6 +24,36 @@ public class Student {
 		ContactNum = contactNum;
 		CCA = cca;
 		CCAID = ccaid;
+	}
+	
+	public Student(int studentID, String name, String grade, String classroom, String teacher, String parentName, String parentEmail, int contactNum, String cca, int ccaid) {
+		super();
+		StudentID = studentID;
+		Name = name;
+		Grade = grade;
+		Classroom = classroom;
+		Teacher = teacher;
+		ParentName = parentName;
+		ParentEmail = parentEmail;
+		ContactNum = contactNum;
+		CCA = cca;
+		CCAID = ccaid;
+	}
+	
+	public String getParentName() {
+		return ParentName;
+	}
+
+	public void setParentName(String parentName) {
+		ParentName = parentName;
+	}
+
+	public String getParentEmail() {
+		return ParentEmail;
+	}
+
+	public void setParentEmail(String parentEmail) {
+		ParentEmail = parentEmail;
 	}
 
 	public int getCCAID() {
