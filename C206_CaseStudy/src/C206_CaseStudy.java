@@ -166,7 +166,7 @@ public class C206_CaseStudy {
 		C206_CaseStudy.setHeader("LOGIN");
 		System.out.println("1. CCA Coordinator");
 		System.out.println("2. Students");
-		System.out.println("4. Quit");
+		System.out.println("3. Quit");
 	}
 	
 	public static void coordinatorMenu() {
