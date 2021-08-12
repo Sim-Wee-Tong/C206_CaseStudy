@@ -160,10 +160,13 @@ public class C206_CaseStudyTest {
 	public void tearDown() throws Exception {
 		s1 = null;
 		s2 = null;
+		c1 = null;
+		c2 = null;
 		
 		studentList = null;
+		categoryList = null;
 	}
-	
+	@Test
 	public void retrieveAllCategoriesTest() {
 		// test whether category list is not null but empty
 		assertNotNull("test if there is a valid CCA category arraylist to retrieve categories from", categoryList);
@@ -181,6 +184,7 @@ public class C206_CaseStudyTest {
 		output += String.format("%s", "Music");
 		assertEquals("test that viewAllCategories", output, categories);
 	}
+	@Test
 	public void addCategoryTest() {
 		// test whether category list is not null 
 		assertNotNull("test if there is a valid CCA category arraylist to add category to", categoryList);
@@ -189,15 +193,16 @@ public class C206_CaseStudyTest {
 		categoryList.add(c2);
 		assertEquals("Check that categoryList size is 2", 2, categoryList.size());
 	}
+	@Test
 	public void deleteCategoryTest() {
 		// test whether category list is not null but empty
 		assertNotNull("test if there is a valid CCA category arraylist to delete category from", categoryList);
 		//Given an empty list, after adding 2 categories, the size of the list is 2.
 		C206_CaseStudy.addCategory(categoryList, c1);
 		C206_CaseStudy.addCategory(categoryList, c2);
+		assertNotNull("test if there is a valid CCA category arraylist to delete category from", categoryList);
 		// test that after deleting a category, size of category list is 1
 		categoryList.remove(0);
-	//	C206_CaseStudy.deleteCategory(categoryList);
 		assertEquals("test that categoryList size is 1", 0, categoryList.size());
 	}
 	@Test
