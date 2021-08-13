@@ -18,7 +18,6 @@ public class C206_CaseStudy {
 	        ArrayList<Student> SoccerList = new ArrayList<Student>();
 	        ArrayList<Student> SoccerPendingList = new ArrayList<Student>();
 	
-	
 			studentList.add(new Student(20123, "Xiao Ming", "P4", "W64A", "Desmond Lee", "20123@myrp.edu.sg", 98765432, null, 0));
 			studentList.add(new Student(20234, "Xiao Hua", "P4", "W64A", "Desmond Lee", "20234@myrp.edu.sg", 87654321, null, 0));
 			studentList.add(new Student(21123, "Da Ming", "P3", "W65A", "Candice", "Joe", "JoeMa@gmail.com", 97538642, null, 0));
@@ -28,6 +27,7 @@ public class C206_CaseStudy {
 			SoccerList.add(new Student(20234, "Xiao Hua", "P4", "W64A", "Desmond Lee", "20234@myrp.edu.sg", 87654321, "Soccer",1));
 			
 			ccaList.add(new CCA(1, "Soccer", "Kicking ball around", 0, "Wednesday", "3:00pm-4:00pm","School field","Mr Severus Tay"));
+			ccaList.add(new CCA(2, "Bakery", "baking", 0, "Tuesday", "3:00pm-4:00pm","BLK D 03-22","Ms Serious Tay"));
 			
 			categoryList.add(new CCAcategory("Sports"));
 			categoryList.add(new CCAcategory("Art"));
@@ -132,6 +132,10 @@ public class C206_CaseStudy {
 							}
 							else if (option == 3) {
 								// Quit CCA
+								String confirm = Helper.readString("Are you sure you wish to quit your CCA? (Y/N) > ");
+								if (confirm.equals("Y")||confirm.equals("y")) {
+									
+								}
 								
 							}
 							else if (option == 4) {
