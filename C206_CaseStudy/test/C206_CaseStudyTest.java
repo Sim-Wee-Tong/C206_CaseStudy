@@ -27,8 +27,8 @@ public class C206_CaseStudyTest {
 	public void setUp() throws Exception {
 		s1 = new Student(20123, "Xiao Ming", "P4", "W64A", "Desmond Lee", "20123@myrp.edu.sg", 98765432, null,1);
 		s2 = new Student(20234, "Xiao Hua", "P4", "W64A", "Desmond Lee", "20234@myrp.edu.sg", 87654321, null,2);
-		cca1 = new CCA("Soccer", "Kicking ball around", 0, "Wednesday", "3:00pm-4:00pm","School field","Mr Severus Tay");
-		cca2 = new CCA("Bakery", "baking", 0, "Tuesday", "3:00pm-4:00pm","BLK D 03-22","Ms Serious Tay");
+		cca1 = new CCA(1, "Soccer", "Kicking ball around", 0, "Wednesday", "3:00pm-4:00pm","School field","Mr Severus Tay");
+		cca2 = new CCA(2, "Bakery", "baking", 0, "Tuesday", "3:00pm-4:00pm","BLK D 03-22","Ms Serious Tay");
 		
 		studentList = new ArrayList<Student>();
 		
@@ -95,7 +95,7 @@ public class C206_CaseStudyTest {
 		assertEquals("Test that Student arraylist size is 2", 2, ccaList.size());
 		
 		// Test that after removing an item, the size of the list is 1 - normal
-		C206_CaseStudy.deleteCCA(ccaList, cca1.getTitle());
+		C206_CaseStudy.deleteCCA(ccaList, cca1.getCCAID());
 		assertEquals("Test that CCA arrayList size is 1", 1, ccaList.size());
 	}
 	

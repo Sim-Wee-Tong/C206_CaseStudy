@@ -19,8 +19,8 @@ public class C206_CaseStudy {
 	        ArrayList<Student> SoccerPendingList = new ArrayList<Student>();
 	
 	
-			studentList.add(new Student(20123, "Xiao Ming", "P4", "W64A", "Desmond Lee", "20123@myrp.edu.sg", 98765432, "Soccer",1));
-			studentList.add(new Student(20234, "Xiao Hua", "P4", "W64A", "Desmond Lee", "20234@myrp.edu.sg", 87654321, "Soccer",1));
+			studentList.add(new Student(20123, "Xiao Ming", "P4", "W64A", "Desmond Lee", "20123@myrp.edu.sg", 98765432, null, 0));
+			studentList.add(new Student(20234, "Xiao Hua", "P4", "W64A", "Desmond Lee", "20234@myrp.edu.sg", 87654321, null, 0));
 			studentList.add(new Student(21123, "Da Ming", "P3", "W65A", "Candice", "Joe", "JoeMa@gmail.com", 97538642, null, 0));
 			studentList.add(new Student(21234, "Da Hua", "P3", "W65A", "Candice", "Wendy", "WendyZ@gmail.com", 98647532, null, 0));
 			
@@ -57,15 +57,14 @@ public class C206_CaseStudy {
 						}
 						else if (option == 2 ) {
 							// Add CCA
-							System.out.println("Add CCA");
 							CCA c = inputCCA();
 							C206_CaseStudy.addCCA(ccaList, c);
 							
 						}
 						else if (option == 3) {
 							// Delete CCA
-							System.out.println("Delete CCA");
-							C206_CaseStudy.deleteCCA(ccaList, null);
+							int cca = Helper.readInt("Enter CCA > ");
+							C206_CaseStudy.deleteCCA(ccaList, cca);
 						}
 						else if (option == 4) {
 							// Add CCA Category
@@ -128,8 +127,8 @@ public class C206_CaseStudy {
 								// Join CCA	
 								retrieveAllCCA(ccaList);
 								
-								
-								
+								int ccaId = Helper.readInt("Enter CCA to join > ");
+								C206_CaseStudy.joinCCA(studentList, ccaList, SoccerPendingList, ccaId);
 							}
 							else if (option == 3) {
 								// Quit CCA
@@ -393,12 +392,52 @@ public class C206_CaseStudy {
 // ============================== CCA  ==============================
 	public static String retrieveAllCCA(ArrayList<CCA> ccaList) {
 		C206_CaseStudy.setHeader("VIEW ALL CCA");
-		String output = String.format("%-10s %-20s %-5s %-15s %-17s %-13s %-10s", "Title", "Description", "Size", "Day","Time", "Venue", "Name of instructor\n");
+		String output = String.format("%-5s %-10s %-20s %-5s %-15s %-17s %-13s %-10s", "CCAID", "Title", "Description", "Size", "Day","Time", "Venue", "Name of instructor\n");
 		for (CCA e : ccaList) {
-			output += String.format("%-10s %-20s %-5d %-15s %-17s %-15s %-10s", e.getTitle(),e.getDescription(),e.getSize(),e.getDayOfW(),e.getTime(),e.getVenue(),e.getInstructorName());
+			output += String.format("%-5d %-10s %-20s %-5d %-15s %-17s %-15s %-10s", e.getCCAID(), e.getTitle(),e.getDescription(),e.getSize(),e.getDayOfW(),e.getTime(),e.getVenue(),e.getInstructorName());
 		}
 		System.out.println(output);
 		return output;
+	}
+	
+	// =============== STUDENT JOIN CCA ===============
+	public static void joinCCA(ArrayList<Student> studentList, ArrayList<CCA> ccaList, ArrayList<Student> soccerPendingList, int ccaId) {
+		for (int i = 0; i < ccaList.size(); i++) {
+			if (ccaList.get(i).getCCAID() == ccaId) {
+				
+				ArrayList<Student> s = studentList;
+				
+				if (studentList.get(i).getGrade().equals("P4")||studentList.get(i).getGrade().equals("P5")
+						||studentList.get(i).getGrade().equals("P6")) {
+					
+					soccerPendingList.add(new Student(s.get(i).getStudentID(), s.get(i).getName(), s.get(i).getGrade(),
+							s.get(i).getClassroom(), s.get(i).getTeacher(), s.get(i).getStudentEmail(), s.get(i).getContactNum(),
+							s.get(i).getCCA(), s.get(i).getCCAID()));
+					
+					s.get(i).setCCA("Soccer");
+					s.get(i).setCCAID(1);
+					
+					System.out.println("Registration successful!");
+					System.out.println("Please wait for the confirmation email in your Inbox!");
+				}
+				else if (studentList.get(i).getGrade().equals("P1")||studentList.get(i).getGrade().equals("P2")
+						||studentList.get(i).getGrade().equals("P3")) {
+					
+					soccerPendingList.add(new Student(s.get(i).getStudentID(), s.get(i).getName(), s.get(i).getGrade(),
+							s.get(i).getClassroom(), s.get(i).getTeacher(), s.get(i).getParentName(), s.get(i).getParentEmail(), s.get(i).getContactNum(),
+							s.get(i).getCCA(), s.get(i).getCCAID()));
+					
+					s.get(i).setCCA("Soccer");
+					s.get(i).setCCAID(1);
+					
+					System.out.println("Registration successful!");
+					System.out.println("Please wait for the confirmation email in your Inbox!");
+				}
+			}
+			else {
+				System.out.println("CCA does not exist!");
+			}
+		}
 	}
 	
 	// =============== ADD CCA ===============
@@ -423,10 +462,9 @@ public class C206_CaseStudy {
 	
 	
 	// =============== DELETE CCA ===============
-	public static void deleteCCA(ArrayList<CCA> ccaList, String string) {
-		String cca = Helper.readString("Enter CCA > ");
+	public static void deleteCCA(ArrayList<CCA> ccaList, int ccaID) {
 		for (CCA e : ccaList) {
-			if (e.getTitle() == cca) {
+			if (e.getCCAID() == ccaID) {
 				ccaList.remove(e);
 				System.out.println("CCA deleted");
 			} else {
