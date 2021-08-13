@@ -8,7 +8,8 @@
 
 public class CCA {
     
-    private String title;
+    private int CCAID;
+	private String title;
     private String description;
     private int size;
     private String dayOfW;
@@ -16,9 +17,10 @@ public class CCA {
     private String venue;
     private String instructorName;
     
-    public CCA(String title, String description, int size, String dayOfW, String time, String venue,
+    public CCA(int ccaid, String title, String description, int size, String dayOfW, String time, String venue,
             String instructorName) {
-        this.title = title;
+        this.CCAID = ccaid;
+    	this.title = title;
         this.description = description;
         this.size = size;
         this.dayOfW = dayOfW;
@@ -26,7 +28,22 @@ public class CCA {
         this.venue = venue;
         this.instructorName = instructorName;
     }
-    public String getTitle() {
+    
+    
+    
+    public int getCCAID() {
+		return CCAID;
+	}
+
+
+
+	public void setCCAID(int cCAID) {
+		CCAID = cCAID;
+	}
+
+
+
+	public String getTitle() {
         return title;
     }
 

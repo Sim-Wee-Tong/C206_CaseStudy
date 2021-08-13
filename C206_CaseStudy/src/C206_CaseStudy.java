@@ -27,7 +27,7 @@ public class C206_CaseStudy {
 			SoccerList.add(new Student(20123, "Xiao Ming", "P4", "W64A", "Desmond Lee", "20123@myrp.edu.sg", 98765432, "Soccer",1));
 			SoccerList.add(new Student(20234, "Xiao Hua", "P4", "W64A", "Desmond Lee", "20234@myrp.edu.sg", 87654321, "Soccer",1));
 			
-			ccaList.add(new CCA("Soccer", "Kicking ball around", 0, "Wednesday", "3:00pm-4:00pm","School field","Mr Severus Tay"));
+			ccaList.add(new CCA(1, "Soccer", "Kicking ball around", 0, "Wednesday", "3:00pm-4:00pm","School field","Mr Severus Tay"));
 			
 			categoryList.add(new CCAcategory("Sports"));
 			categoryList.add(new CCAcategory("Art"));
@@ -126,6 +126,9 @@ public class C206_CaseStudy {
 							}
 							else if (option == 2) {
 								// Join CCA	
+								retrieveAllCCA(ccaList);
+								
+								
 								
 							}
 							else if (option == 3) {
@@ -143,7 +146,6 @@ public class C206_CaseStudy {
 	
 					}
 					
-	
 				}
 				else if (role == 3) {
 					System.out.println("Thank you for using CCA Registration System!");
@@ -401,6 +403,7 @@ public class C206_CaseStudy {
 	
 	// =============== ADD CCA ===============
 	public static CCA inputCCA() {
+		int id = Helper.readInt("Enter CCA ID: ");
 		String title = Helper.readString("Enter CCA name: ");
 		String description = Helper.readString("Enter Description: ");
 		int size = Helper.readInt("Enter size: ");
@@ -409,7 +412,7 @@ public class C206_CaseStudy {
 		String venue = Helper.readString("Enter venue: ");
 		String nameOfInst = Helper.readString("Enter Name of Instructor: ");
 		
-		CCA c = new CCA(title, description, size, day, time,venue,nameOfInst);
+		CCA c = new CCA(id, title, description, size, day, time,venue,nameOfInst);
 		return c;
 	}
 	public static void addCCA(ArrayList<CCA> ccaList, CCA c) {
