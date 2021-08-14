@@ -1,4 +1,4 @@
-import static org.junit.Assert.*;
+mport static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
@@ -35,7 +35,6 @@ public class C206_CaseStudyTest {
 		c1 = new CCAcategory("Sports");
 		c2 = new CCAcategory("Music");
 		categoryList = new ArrayList<CCAcategory>();
-		;
 		soccerPendingList = new ArrayList<Student>();
 		soccerList = new ArrayList<Student>();
 
@@ -140,7 +139,7 @@ public class C206_CaseStudyTest {
 	
 		assertEquals("Test that ViewAllStudentlist", testOutput, allStudent); 
 	}
-	
+		
 	@Test
 	public void removeStudentTest() {
 		// Test if item list is not null but empty - boundary
@@ -155,17 +154,7 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.removeStudent(studentList, s1.getStudentID());
 		assertEquals("Test that Student arrayList size is 1", 1, studentList.size());
 	}
-
-	@After
-	public void tearDown() throws Exception {
-		s1 = null;
-		s2 = null;
-		c1 = null;
-		c2 = null;
-		
-		studentList = null;
-		categoryList = null;
-	}
+	
 	@Test
 	public void retrieveAllCategoriesTest() {
 		// test whether category list is not null but empty
@@ -267,12 +256,52 @@ public class C206_CaseStudyTest {
 			    		soccerList.get(i).getName(), soccerList.get(i).getGrade(), soccerList.get(i).getClassroom(),
 			    		soccerList.get(i).getTeacher(), soccerList.get(i).getStudentEmail(), soccerList.get(i).getContactNum(),
 			    		soccerList.get(i).getCCA(),soccerList.get(i).getCCAID());				  
-			    		System.out.println(output);
+			    		System.out.println(output); 
 					  
 				  
 			   }
 		   assertEquals("Test that all soccerList size is 1",1,soccerList.size());
 	   }
+
+	@Test
+	public void retrieveStudentDetailsTest() {
+		// Test if Item list is not null but empty -boundary
+		assertNotNull("Test if there is valid Student arraylist to retrieve item", studentList);
+		
+		//Given an empty list, after adding 2 items, test if the size of the list is 2 - normal
+		C206_CaseStudy.addStudent(studentList, s1);
+		C206_CaseStudy.addStudent(studentList, s2);
+		assertEquals("Test that Student arraylist size is 2", 2, studentList.size());
+		
+		
+		String testOutput = "";
+		// Test if the expected output string same as the list of students retrieved from the CaseStudy	
+		// Test if grade is P4 and above, student email will be displayed - Normal
+		String allStudent = C206_CaseStudy.retrieveStudentDetails(studentList, s1.getStudentID());
+		testOutput += String.format("%-10d %-30s %-5s %-5s %-30s %-20s %-10d %-15s %-10d\n", 
+				s1.getStudentID(), s1.getName(), s1.getGrade(), s1.getClassroom(), s1.getTeacher(), s1.getStudentEmail(),
+				s1.getContactNum(), s1.getCCA(), s1.getCCAID());
+		assertEquals("Test that retrieveStudentDetails", testOutput, allStudent); 
+
+		// Test if grade is P3 and above, parent name and email will be displayed - Normal
+		String allStudent2 = C206_CaseStudy.retrieveStudentDetails(studentList, s2.getStudentID());
+		testOutput += String.format("%-10d %-30s %-5s %-5s %-30s %-30s %-30s %-20s %-10d %-15s %-10d\n", 
+				s2.getStudentID(), s2.getName(), s2.getGrade(), s2.getClassroom(), s2.getTeacher(), s2.getParentName(),
+				s2.getParentEmail(), s2.getContactNum(), s2.getCCA(), s2.getCCAID());
+		assertEquals("Test that retrieveStudentDetails", testOutput, allStudent2); 
+		
+	}
+	
+	@After
+	public void tearDown() throws Exception {
+		s1 = null;
+		s2 = null;
+		c1 = null;
+		c2 = null;
+		
+		studentList = null;
+		categoryList = null;
+	}
 
 
 }
