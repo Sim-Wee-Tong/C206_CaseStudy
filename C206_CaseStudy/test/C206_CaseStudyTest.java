@@ -291,10 +291,10 @@ public class C206_CaseStudyTest {
 		assertEquals("Test that retrieveStudentDetails", testOutput, allStudent2); 
 		
 	}
-	// type in 20123 for it to work
+		// type in 20123 for it to work
 	@Test
-	public  void joinCCAg() {
-		 
+	public  void removeStudentCCA() {
+		 boolean isExist = true;
 	    soccerList.add(s1);
 		int input = Helper.readInt("Please enter the student ID to remove");
 		for (int i = 0; i < soccerList.size(); i++) {
@@ -317,9 +317,17 @@ public class C206_CaseStudyTest {
 			}
 		}
 	}
+		for(int i= 0; i<soccerList.size(); i++) {
+			if(soccerList.get(i).getStudentID() == input) {
+				isExist = false;
+				
+			}
+		}
 	
 		assertEquals("Test that student is removed", 0,soccerList.size()); 
+		assertEquals("Test that student isn't in the list", false,isExist);
 	}
+	
 	
 	@After
 	public void tearDown() throws Exception {
