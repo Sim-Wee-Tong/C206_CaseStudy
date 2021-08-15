@@ -406,7 +406,7 @@ public class C206_CaseStudy {
 		C206_CaseStudy.setHeader("VIEW ALL CCA");
 		String output = String.format("%-5s %-10s %-20s %-5s %-15s %-17s %-13s %-10s", "CCAID", "Title", "Description", "Size", "Day","Time", "Venue", "Name of instructor\n");
 		for (CCA e : ccaList) {
-			output += String.format("%-5d %-10s %-20s %-5d %-15s %-17s %-15s %-10s", e.getCCAID(), e.getTitle(),e.getDescription(),e.getSize(),e.getDayOfW(),e.getTime(),e.getVenue(),e.getInstructorName());
+			output += String.format("%-5d %-10s %-20s %-5d %-15s %-17s %-15s %-10s \n", e.getCCAID(), e.getTitle(),e.getDescription(),e.getSize(),e.getDayOfW(),e.getTime(),e.getVenue(),e.getInstructorName());
 		}
 		System.out.println(output);
 		return output;
