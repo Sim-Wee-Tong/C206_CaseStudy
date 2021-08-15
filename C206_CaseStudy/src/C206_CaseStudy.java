@@ -140,10 +140,22 @@ public class C206_CaseStudy {
 							}
 							else if (option == 3) {
 								// Quit CCA
-								String confirm = Helper.readString("Are you sure you wish to quit your CCA? (Y/N) > ");
-								if (confirm.equals("Y")||confirm.equals("y")) {
+								char confirm = Helper.readChar("Are you sure you wish to quit your CCA? (Y/N) > ");
+								
+								boolean quit = quitCCA(studentList, confirm);
+								if (quit == true) {
+									int ccaid = Helper.readInt("Verify cca ID > ");
 									
+									for (int i = 0; i < studentList.size(); i++){
+										studentList.get(i).setCCA(null);
+										studentList.get(i).setCCAID(0);
+									}
 								}
+								else if (quit == false){
+									System.out.println("Student cannot leave CCA!");
+								}
+								
+
 								
 							}
 							else if (option == 4) {
@@ -218,6 +230,25 @@ public class C206_CaseStudy {
 	
 
 	// ============================== STUDENT/PARENT ==============================
+	
+		// Quit CCA
+	public static boolean quitCCA(ArrayList<Student> studentList, char confirm) {
+		boolean quit = false;
+		
+		if (confirm == ('y'|'Y')) {
+			quit = true;
+		}
+		else if (confirm == ('n'|'N')) {
+			quit = false;
+		}
+		else {
+			System.out.println("Invalid option");
+		}
+		
+		return quit;
+		
+	}
+
 	
 	// =============== VIEW ALL STUDENT ===============
 	public static String retrieveAllStudent(ArrayList<Student> studentList) {
