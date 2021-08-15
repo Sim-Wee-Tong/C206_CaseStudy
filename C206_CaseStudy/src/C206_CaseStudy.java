@@ -17,9 +17,11 @@ public class C206_CaseStudy {
 	        
 	        ArrayList<Student> SoccerList = new ArrayList<Student>();
 	        ArrayList<Student> SoccerPendingList = new ArrayList<Student>();
+	        ArrayList<Student> BakeryList = new ArrayList<Student>();
+	        ArrayList<Student> BakeryPendingList = new ArrayList<Student>();
 	
-			studentList.add(new Student(20123, "Xiao Ming", "P4", "W64A", "Desmond Lee", "20123@myrp.edu.sg", 98765432, null, 0));
-			studentList.add(new Student(20234, "Xiao Hua", "P4", "W64A", "Desmond Lee", "20234@myrp.edu.sg", 87654321, null, 0));
+			studentList.add(new Student(20123, "Xiao Ming", "P4", "W64A", "Desmond Lee", "20123@myrp.edu.sg", 98765432, "Soccer", 1));
+			studentList.add(new Student(20234, "Xiao Hua", "P4", "W64A", "Desmond Lee", "20234@myrp.edu.sg", 87654321, "Soccer", 1));
 			studentList.add(new Student(21123, "Da Ming", "P3", "W65A", "Candice", "Joe", "JoeMa@gmail.com", 97538642, null, 0));
 			studentList.add(new Student(21234, "Da Hua", "P3", "W65A", "Candice", "Wendy", "WendyZ@gmail.com", 98647532, null, 0));
 			
@@ -29,10 +31,10 @@ public class C206_CaseStudy {
 			ccaList.add(new CCA(1, "Soccer", "Kicking ball around", 0, "Wednesday", "3:00pm-4:00pm","School field","Mr Severus Tay"));
 			ccaList.add(new CCA(2, "Bakery", "baking", 0, "Tuesday", "3:00pm-4:00pm","BLK D 03-22","Ms Serious Tay"));
 			
-			categoryList.add(new CCAcategory("Sports", 1));
-			categoryList.add(new CCAcategory("Art", 2));
-			categoryList.add(new CCAcategory("Music", 3));
-			categoryList.add(new CCAcategory("Food", 4));
+			categoryList.add(new CCAcategory("Sports"));
+			categoryList.add(new CCAcategory("Art"));
+			categoryList.add(new CCAcategory("Music"));
+			categoryList.add(new CCAcategory("Food"));
 			
 			int role = 0;
 			
@@ -46,7 +48,7 @@ public class C206_CaseStudy {
 					C206_CaseStudy.coordinatorMenu(); //Displays options for CCA Coordinator
 					int option = 0;
 					
-					while (option != 10) {
+					while (option != 9) {
 						
 						option = Helper.readInt("Enter option > ");
 						
@@ -63,7 +65,8 @@ public class C206_CaseStudy {
 						}
 						else if (option == 3) {
 							// Delete CCA
-							C206_CaseStudy.deleteCCA(ccaList);
+							int cca = Helper.readInt("Enter CCA > ");
+							C206_CaseStudy.deleteCCA(ccaList, cca);
 						}
 						else if (option == 4) {
 							// Add CCA Category
@@ -77,27 +80,24 @@ public class C206_CaseStudy {
 						else if (option == 6) {
 							// Add student to CCA
 							viewAllStudent(studentList);
-							addStudentCCA(SoccerPendingList,SoccerList);
+							addStudentCCA(SoccerPendingList,SoccerList,BakeryPendingList,BakeryList);
 						}
 						else if (option == 7) {
 							// View registered students
-							 viewStudentSoccer(SoccerList );
+							 viewStudentSoccer(SoccerList,BakeryList );
 						}
 						else if (option == 8) {
 							// Delete student
-						        removeStudentCCA(SoccerList);
-
+							removeStudentCCA(SoccerList);
 						}
 						else if (option == 9){
-							// Edit Parent detail
-							updateParentDetail(studentList);
 							// Quit CCA
 							System.out.println("Returning to Login page...");
 						}
 						else if (option == 10){
-							// Quit CCA
+							// Update Parent Details
+							updateParentDetail(studentList);
 							System.out.println("Returning to Login page...");
-							
 						}
 						else {
 							System.out.println("Invalid Option");
@@ -133,29 +133,19 @@ public class C206_CaseStudy {
 							}
 							else if (option == 2) {
 								// Join CCA	
-								retrieveAllCCA(ccaList);
 								
-								int ccaId = Helper.readInt("Enter CCA to join > ");
-								C206_CaseStudy.joinCCA(studentList, ccaList, SoccerPendingList, ccaId);
+								
+								
+							   setStudentCCA( studentList,id,SoccerList, SoccerPendingList,BakeryList, BakeryPendingList);
+								retrieveAllCCA(ccaList);
+
 							}
 							else if (option == 3) {
 								// Quit CCA
-								char confirm = Helper.readChar("Are you sure you wish to quit your CCA? (Y/N) > ");
-								
-								boolean quit = quitCCA(studentList, confirm);
-								if (quit == true) {
-									int ccaid = Helper.readInt("Verify cca ID > ");
+								String confirm = Helper.readString("Are you sure you wish to quit your CCA? (Y/N) > ");
+								if (confirm.equals("Y")||confirm.equals("y")) {
 									
-									for (int i = 0; i < studentList.size(); i++){
-										studentList.get(i).setCCA(null);
-										studentList.get(i).setCCAID(0);
-									}
 								}
-								else if (quit == false){
-									System.out.println("Student cannot leave CCA!");
-								}
-								
-
 								
 							}
 							else if (option == 4) {
@@ -204,7 +194,8 @@ public class C206_CaseStudy {
 		System.out.println("6. Add Student in a CCA");
 		System.out.println("7. View registered students");
 		System.out.println("8. Delete parent");
-		System.out.println("9. Quit");
+		System.out.println("9. Delete student from CCA");
+		System.out.println("10. Quit");
 	}
 	
 	public static void studentMenu() {
@@ -231,25 +222,6 @@ public class C206_CaseStudy {
 
 	// ============================== STUDENT/PARENT ==============================
 	
-		// Quit CCA
-	public static boolean quitCCA(ArrayList<Student> studentList, char confirm) {
-		boolean quit = false;
-		
-		if (confirm == ('y'|'Y')) {
-			quit = true;
-		}
-		else if (confirm == ('n'|'N')) {
-			quit = false;
-		}
-		else {
-			System.out.println("Invalid option");
-		}
-		
-		return quit;
-		
-	}
-
-	
 	// =============== VIEW ALL STUDENT ===============
 	public static String retrieveAllStudent(ArrayList<Student> studentList) {
 		String output = "";
@@ -273,7 +245,7 @@ public class C206_CaseStudy {
 	
 	// =============== VIEW STUDENT DETAILS ================
 	
-	public static String retrieveStudentDetails(ArrayList<Student> studentList, int studentId) {
+	public static void retrieveStudentDetails(ArrayList<Student> studentList, int studentId) {
 		String output = "";
 		
 		for (int i = 0; i < studentList.size(); i++) {
@@ -299,7 +271,6 @@ public class C206_CaseStudy {
 			}
 		}
 		System.out.println(output);
-		return output;
 	}
 	
 	// =============== ADD STUDENT ===============
@@ -438,7 +409,8 @@ public class C206_CaseStudy {
 		C206_CaseStudy.setHeader("VIEW ALL CCA");
 		String output = String.format("%-5s %-10s %-20s %-5s %-15s %-17s %-13s %-10s", "CCAID", "Title", "Description", "Size", "Day","Time", "Venue", "Name of instructor\n");
 		for (CCA e : ccaList) {
-			output += String.format("%-5d %-10s %-20s %-5d %-15s %-17s %-15s %-10s \n", e.getCCAID(), e.getTitle(),e.getDescription(),e.getSize(),e.getDayOfW(),e.getTime(),e.getVenue(),e.getInstructorName());
+			output += String.format("%-5d %-10s %-20s %-5d %-15s %-17s %-15s %-10s\n", e.getCCAID(), 
+					e.getTitle(),e.getDescription(),e.getSize(),e.getDayOfW(),e.getTime(),e.getVenue(),e.getInstructorName());
 		}
 		System.out.println(output);
 		return output;
@@ -483,7 +455,8 @@ public class C206_CaseStudy {
 			}
 		}
 	}
-		public static void updateParentDetail(ArrayList<Student> studentList) {
+	
+	public static void updateParentDetail(ArrayList<Student> studentList) {
 		int id = Helper.readInt("Please enter student ID");
 
 	    //loop for reg list
@@ -518,7 +491,6 @@ public class C206_CaseStudy {
 
 	    }
 	}
-	
 	// =============== ADD CCA ===============
 	public static CCA inputCCA() {
 		int id = Helper.readInt("Enter CCA ID: ");
@@ -541,27 +513,17 @@ public class C206_CaseStudy {
 	
 	
 	// =============== DELETE CCA ===============
-	public static boolean doDeleteCCA(ArrayList<CCA> ccaList, int ccaID) {
-		Boolean isDeleted = false;
-		for (int i = 0; i < ccaList.size(); i++) {
-			int ccaid = ccaList.get(i).getCCAID();
-			if (ccaid == ccaID) {
-				ccaList.remove(i);
-				isDeleted = true;
+	public static void deleteCCA(ArrayList<CCA> ccaList, int ccaID) {
+		for (CCA e : ccaList) {
+			if (e.getCCAID() == ccaID) {
+				ccaList.remove(e);
+				System.out.println("CCA deleted");
+			} else {
+				System.out.println("There is no such category");
 			}
 		}
-		return isDeleted;
 	}
-	public static void deleteCCA(ArrayList<CCA> ccaList) {
-		C206_CaseStudy.retrieveAllCCA(ccaList);
-		int ccaID = Helper.readInt("Enter CCA ID to delete > ");
-		Boolean isDeleted = doDeleteCCA(ccaList, ccaID);
-		if (isDeleted == false) {
-			System.out.println("There is no such CCA");
-		} else {
-			System.out.println("CCA deleted" );
-		}
-	}	// =============== DELETE Student from CCA ===============
+	// =============== DELETE Student from CCA ===============
 	public static void removeStudentCCA( ArrayList<Student> soccerList) {
 		int input = Helper.readInt("Please enter the student ID");
 		for (int i = 0; i < soccerList.size(); i++) {
@@ -583,13 +545,14 @@ public class C206_CaseStudy {
 		}
 	}
 	}
+	
 	// ============================== CCA CATEGORY ==============================
 
 	// =============== VIEW ALL CATEGORIES ===============
 	public static String retrieveAllCategories(ArrayList<CCAcategory> categoryList) {
 		String output = "";
 		for (int i = 0; i < categoryList.size(); i++) {
-			output += String.format("%d %s\n", categoryList.get(i).getCategoryID(), categoryList.get(i).getCategoryName());
+			output += String.format("%s\n", categoryList.get(i).getCategory());
 		}
 		return output;
 	}
@@ -602,9 +565,8 @@ public class C206_CaseStudy {
 	
 	// =============== ADD CATEGORY ===============
 	public static CCAcategory inputCategory() {
-		int categoryId = Helper.readInt("Enter category id to add > ");
-		String categoryName = Helper.readString("Enter category name to add > ");
-		CCAcategory c = new CCAcategory(categoryName, categoryId);
+		String category = Helper.readString("Enter category to add > ");
+		CCAcategory c = new CCAcategory(category);
 		return c;
 	}
 	public static void addCategory(ArrayList<CCAcategory> categoryList, CCAcategory c) {
@@ -613,11 +575,11 @@ public class C206_CaseStudy {
 	}
 	
 	// =============== DELETE CATEGORY ===============
-	public static boolean doDeleteCategory(ArrayList<CCAcategory> categoryList, int categoryID) {
+	public static boolean doDeleteCategory(ArrayList<CCAcategory> categoryList, String category) {
 		Boolean isDeleted = false;
 		for (int i = 0; i < categoryList.size(); i++) {
-			int ccaCategoryId = categoryList.get(i).getCategoryID();
-			if (categoryID == ccaCategoryId) {
+			String ccaCategory = categoryList.get(i).getCategory();
+			if (category.equalsIgnoreCase(ccaCategory)) {
 				categoryList.remove(i);
 				isDeleted = true;
 			}
@@ -627,13 +589,13 @@ public class C206_CaseStudy {
 	
 	public static void deleteCategory(ArrayList<CCAcategory> categoryList) {
 		C206_CaseStudy.viewAllCategories(categoryList);
-		int categoryID = Helper.readInt("Enter category id to delete > ");
-		Boolean isDeleted = doDeleteCategory(categoryList, categoryID);
+		String category = Helper.readString("Enter category to delete > ");
+		Boolean isDeleted = doDeleteCategory(categoryList, category);
 
 		if (isDeleted == false) {
 			System.out.println("There is no such category");
 		} else {
-			System.out.println("Category deleted");
+			System.out.println("Category '" + category + "' deleted");
 		}
 	}
 	
@@ -657,58 +619,114 @@ public class C206_CaseStudy {
 	}
 	
  //================ ADD STUDENT TO CCA ==============// this is for student to apply to a cca
-    public static void setStudentCCA(ArrayList<Student> studentList, int studentID,ArrayList<Student> SoccerList,ArrayList<Student> SoccerPendingList) {
+    public static void setStudentCCA(ArrayList<Student> studentList, int studentID,ArrayList<Student> SoccerList,ArrayList<Student> SoccerPendingList,ArrayList<Student> BakeryList,ArrayList<Student> BakeryPendingList) {
     	for (int i = 0; i < studentList.size(); i++) {
     		if (studentList.get(i).getStudentID() == studentID ) {
     			String input =Helper.readString("Which CCA do you want to join?");
     			if(input.equalsIgnoreCase("soccer") && SoccerList.size()<20 ) {
-    				ArrayList<Student> a=SoccerList;
-    				SoccerPendingList.add(new Student(a.get(i).getStudentID(),a.get(i).getName(),a.get(i).getGrade(),a.get(i).getClassroom(),a.get(i).getTeacher(),a.get(i).getStudentEmail(),a.get(i).getContactNum(),a.get(i).getCCA(),a.get(i).getCCAID()));
+    				ArrayList<Student> a=studentList;
+    				int ccaID = 1;
+    				SoccerPendingList.add(new Student(a.get(i).getStudentID(),a.get(i).getName()
+    						,a.get(i).getGrade(),a.get(i).getClassroom(),a.get(i).getTeacher(),a.get(i).getStudentEmail(),a.get(i).getContactNum(),input,ccaID));
+					a.get(i).setCCA("Soccer");
+					a.get(i).setCCAID(1);
+    				System.out.println("student added to the pending list");
+    				
     			
     			}
+    			else if(input.equalsIgnoreCase("Bakery") && BakeryList.size()<20 ) {
+    				ArrayList<Student> a=studentList;
+    				int ccaID = 1;
+    				BakeryPendingList.add(new Student(a.get(i).getStudentID(),a.get(i).getName()
+    						,a.get(i).getGrade(),a.get(i).getClassroom(),a.get(i).getTeacher(),a.get(i).getStudentEmail(),a.get(i).getContactNum(),input,ccaID));
+    				a.get(i).setCCA("Bakery");
+					a.get(i).setCCAID(2);
+    				System.out.println("student added to the pending list");
+    				
+    			}
+    	
     			
     		}
     	}
     }
     // this is to selected student from pending list and slot it into actual cca list
-   public static void addStudentCCA(ArrayList<Student> soccerPendingList,ArrayList<Student> soccerList ) {
+   public static void addStudentCCA(ArrayList<Student> soccerPendingList,ArrayList<Student> soccerList,ArrayList<Student> BakeryPendingList,ArrayList<Student> BakeryList ) {
 	   String output=String.format("%-10s\n", "Student ID");
 	   boolean isAdded = false;
-   for(int i = 0; i<soccerPendingList.size();i++) {
-	  output+= String.format("%-10s\n", soccerPendingList.get(i));
-	   
-   }
+	  boolean isAdded2 = false;
+
+	   int input = Helper.readInt("Please enter CCAID");
+	   int newinput= Helper.readInt("Please select student's ID to add into your CCA");
+   if(input ==1) { 
+
    System.out.println(output);
-   int input= Helper.readInt("Please select student's ID to add into your CCA > ");
+
    for(int i = 0; i<soccerPendingList.size();i++) {
 	   
 		  output+= String.format("%-10s\n", soccerPendingList.get(i));
-		  if(input==soccerPendingList.get(i).getStudentID()){
+		  if(newinput==soccerPendingList.get(i).getStudentID()){
 			  ArrayList<Student> a=soccerPendingList;
-			  soccerList.add(new Student(a.get(i).getStudentID(),a.get(i).getName(),a.get(i).getGrade(),a.get(i).getClassroom(),a.get(i).getTeacher(),a.get(i).getStudentEmail(),a.get(i).getContactNum(),a.get(i).getCCA(),a.get(i).getCCAID()));
+			  soccerList.add(new Student(a.get(i).getStudentID(),a.get(i).getName(),a.get(i).getGrade()
+					  ,a.get(i).getClassroom(),a.get(i).getTeacher(),a.get(i).getStudentEmail(),a.get(i).getContactNum(),a.get(i).getCCA(),a.get(i).getCCAID()));
 			  soccerPendingList.remove(i);
 			  isAdded = true;
 			  System.out.println("Student Added!");
 			  
 		  }
 	   }
-   if(isAdded == false) {
+  
+     
+
+   }else if(input ==2) {
+		  
+
+		   for(int i = 0; i<BakeryPendingList.size();i++) {
+			   
+				  output+= String.format("%-10d\n", BakeryPendingList.get(i).getStudentID());
+				  if(BakeryPendingList.get(i).getStudentID()==newinput){
+					  ArrayList<Student> a=BakeryList;
+					  BakeryList.add(new Student(a.get(i).getStudentID(),a.get(i).getName(),a.get(i).getGrade()
+							  ,a.get(i).getClassroom(),a.get(i).getTeacher(),a.get(i).getStudentEmail(),a.get(i).getContactNum(),a.get(i).getCCA(),a.get(i).getCCAID()));
+					  BakeryPendingList.remove(i);
+					  isAdded2 = true;
+					  System.out.println("Student Added!");
+					  
+				  }
+			   }
+		    
+		
+	   
+   }
+   if(isAdded == false&&isAdded == false) {
 	   System.out.println("Student Not Added!");
-   }  
-}
+   } 
+   }
    
-   public static void viewStudentSoccer(ArrayList<Student> soccerList ) {
+   public static void viewStudentSoccer(ArrayList<Student> soccerList,ArrayList<Student> BakeryList) {
+	   int input = Helper.readInt("Please enter CCAID");
     		String output = String.format("%-10s %-30s %-5s %-5s %-30s %-20s %-10s %-15s %-15s\n", "STUDENT ID", "STUDENT NAME",
     				"GRADE", "CLASS", "TEACHER NAME", "EMAIL", "CONTACT NO", "CCA", "CCA REGISTRATION ID");
+    	if (input ==1) {
     	   for(int i = 0; i<soccerList.size();i++) {
     		    output += String.format("%-10d %-30s %-5s %-5s %-30s %-20s %-10d %-15s %-15d\n", soccerList.get(i).getStudentID(),
     		    		soccerList.get(i).getName(), soccerList.get(i).getGrade(), soccerList.get(i).getClassroom(),
     		    		soccerList.get(i).getTeacher(), soccerList.get(i).getStudentEmail(), soccerList.get(i).getContactNum(),
     		    		soccerList.get(i).getCCA(),soccerList.get(i).getCCAID());				  
-    		    		System.out.println(output);
+    		    		
+    	   }
+    	   System.out.println(output);
 
 
     		   }
+    	else if(input ==2) {
+    		ArrayList<Student> a=BakeryList; 
+    		for(int i = 0; i<BakeryList.size();i++) {
+    		output += String.format("%-10d %-30s %-5s %-5s %-30s %-20s %-10d %-15s %-15d\n",a.get(i).getStudentID(),a.get(i).getName(),
+    				a.get(i).getGrade(),a.get(i).getClassroom(),a.get(i).getTeacher(),a.get(i).getStudentEmail(),a.get(i).getContactNum(),a.get(i).getCCA(),a.get(i).getCCAID());
+    		}System.out.println(output);
+    		
+    		
+    	}
        }
 	
 }
