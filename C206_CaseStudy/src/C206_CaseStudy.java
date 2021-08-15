@@ -63,8 +63,7 @@ public class C206_CaseStudy {
 						}
 						else if (option == 3) {
 							// Delete CCA
-							int cca = Helper.readInt("Enter CCA > ");
-							C206_CaseStudy.deleteCCA(ccaList, cca);
+							C206_CaseStudy.deleteCCA(ccaList);
 						}
 						else if (option == 4) {
 							// Add CCA Category
@@ -466,14 +465,25 @@ public class C206_CaseStudy {
 	
 	
 	// =============== DELETE CCA ===============
-	public static void deleteCCA(ArrayList<CCA> ccaList, int ccaID) {
-		for (CCA e : ccaList) {
-			if (e.getCCAID() == ccaID) {
-				ccaList.remove(e);
-				System.out.println("CCA deleted");
-			} else {
-				System.out.println("There is no such category");
+	public static boolean doDeleteCCA(ArrayList<CCA> ccaList, int ccaID) {
+		Boolean isDeleted = false;
+		for (int i = 0; i < ccaList.size(); i++) {
+			int ccaid = ccaList.get(i).getCCAID();
+			if (ccaid == ccaID) {
+				ccaList.remove(i);
+				isDeleted = true;
 			}
+		}
+		return isDeleted;
+	}
+	public static void deleteCCA(ArrayList<CCA> ccaList) {
+		C206_CaseStudy.retrieveAllCCA(ccaList);
+		int ccaID = Helper.readInt("Enter CCA ID to delete > ");
+		Boolean isDeleted = doDeleteCCA(ccaList, ccaID);
+		if (isDeleted == false) {
+			System.out.println("There is no such CCA");
+		} else {
+			System.out.println("CCA deleted" );
 		}
 	}
 	// ============================== CCA CATEGORY ==============================
