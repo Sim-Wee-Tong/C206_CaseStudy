@@ -485,6 +485,27 @@ public class C206_CaseStudy {
 		} else {
 			System.out.println("CCA deleted" );
 		}
+	}	// =============== DELETE Student from CCA ===============
+	public static void removeStudentCCA( ArrayList<Student> soccerList) {
+		int input = Helper.readInt("Please enter the student ID");
+		for (int i = 0; i < soccerList.size(); i++) {
+			
+				
+				
+				if (soccerList.get(i).getStudentID() == input) {
+					
+					soccerList.remove(i);
+				
+				
+					System.out.println("Deletion of student "+ input +" is successful!");
+
+				}
+				
+			else {
+				System.out.println("Student does not exist in the CCA!");
+			
+		}
+	}
 	}
 	// ============================== CCA CATEGORY ==============================
 
