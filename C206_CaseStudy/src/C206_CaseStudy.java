@@ -242,7 +242,7 @@ public class C206_CaseStudy {
 	
 	// =============== VIEW STUDENT DETAILS ================
 	
-	public static void retrieveStudentDetails(ArrayList<Student> studentList, int studentId) {
+	public static String retrieveStudentDetails(ArrayList<Student> studentList, int studentId) {
 		String output = "";
 		
 		for (int i = 0; i < studentList.size(); i++) {
@@ -268,6 +268,7 @@ public class C206_CaseStudy {
 			}
 		}
 		System.out.println(output);
+		return Output;
 	}
 	
 	// =============== ADD STUDENT ===============
