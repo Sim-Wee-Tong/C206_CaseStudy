@@ -85,6 +85,8 @@ public class C206_CaseStudy {
 						}
 						else if (option == 8) {
 							// Delete student
+						        removeStudentCCA(SoccerList);
+
 						}
 						else if (option == 9){
 							// Quit CCA
