@@ -46,7 +46,7 @@ public class C206_CaseStudy {
 					C206_CaseStudy.coordinatorMenu(); //Displays options for CCA Coordinator
 					int option = 0;
 					
-					while (option != 9) {
+					while (option != 10) {
 						
 						option = Helper.readInt("Enter option > ");
 						
@@ -89,8 +89,15 @@ public class C206_CaseStudy {
 
 						}
 						else if (option == 9){
+							// Edit Parent detail
+							updateParentDetail(studentList);
 							// Quit CCA
 							System.out.println("Returning to Login page...");
+						}
+						else if (option == 10){
+							// Quit CCA
+							System.out.println("Returning to Login page...");
+							
 						}
 						else {
 							System.out.println("Invalid Option");
@@ -443,6 +450,41 @@ public class C206_CaseStudy {
 				System.out.println("CCA does not exist!");
 			}
 		}
+	}
+		public static void updateParentDetail(ArrayList<Student> studentList) {
+		int id = Helper.readInt("Please enter student ID");
+
+	    //loop for reg list
+	    if(studentList.size()>0) {
+	      for (int i = 0; i < studentList.size(); i++) {
+	        if(studentList.get(i).getStudentID() == id) {
+	          String newstudentname = Helper.readString("Enter New Student Name to update > ");
+	          String newgrade = Helper.readString("Enter New Grade to update > ");
+	          String newteacher = Helper.readString("Enter New Teacher to update > ");
+	          String newparentname = Helper.readString("Enter New Parent Name to update > ");
+	          String newparentemail = Helper.readString("Enter New Parent Email to update > ");
+
+	          studentList.get(i).setName(newstudentname);
+	          studentList.get(i).setGrade(newgrade);
+	          studentList.get(i).setTeacher(newteacher);
+	          studentList.get(i).setParentName(newparentname);
+	          studentList.get(i).setParentEmail(newparentemail);
+	          System.out.println("Parent Updated");
+
+	          break;
+
+	        }
+	        else {
+	          System.out.println("INVALID ID PROVIDED");
+	          break;
+	        }
+	      }
+
+	    }
+	    else {
+	      System.out.println("No student registered\n");
+
+	    }
 	}
 	
 	// =============== ADD CCA ===============
