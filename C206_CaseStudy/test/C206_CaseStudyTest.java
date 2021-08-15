@@ -32,8 +32,8 @@ public class C206_CaseStudyTest {
 		
 		studentList = new ArrayList<Student>();
 		
-		c1 = new CCAcategory("Sports");
-		c2 = new CCAcategory("Music");
+		c1 = new CCAcategory("Sports", 1);
+		c2 = new CCAcategory("Music", 2);
 		categoryList = new ArrayList<CCAcategory>();
 		soccerPendingList = new ArrayList<Student>();
 		soccerList = new ArrayList<Student>();
