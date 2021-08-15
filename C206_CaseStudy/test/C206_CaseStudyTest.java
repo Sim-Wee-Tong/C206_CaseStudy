@@ -294,7 +294,7 @@ public class C206_CaseStudyTest {
 		// type in 20123 for it to work
 	@Test
 	public  void removeStudentCCA() {
-		 boolean isExist = true;
+		 boolean isExist = false;
 	    soccerList.add(s1);
 		int input = Helper.readInt("Please enter the student ID to remove");
 		for (int i = 0; i < soccerList.size(); i++) {
@@ -319,7 +319,7 @@ public class C206_CaseStudyTest {
 	}
 		for(int i= 0; i<soccerList.size(); i++) {
 			if(soccerList.get(i).getStudentID() == input) {
-				isExist = false;
+				isExist = true;
 				
 			}
 		}
