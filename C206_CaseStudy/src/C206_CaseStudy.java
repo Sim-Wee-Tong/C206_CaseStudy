@@ -679,7 +679,7 @@ public class C206_CaseStudy {
 	   
    }
    System.out.println(output);
-   int input= Helper.readInt("Please select student's ID to add into your CCA");
+   int input= Helper.readInt("Please select student's ID to add into your CCA > ");
    for(int i = 0; i<soccerPendingList.size();i++) {
 	   
 		  output+= String.format("%-10s\n", soccerPendingList.get(i));
