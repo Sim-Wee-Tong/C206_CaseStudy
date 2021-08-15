@@ -94,7 +94,7 @@ public class C206_CaseStudyTest {
 		assertEquals("Test that Student arraylist size is 2", 2, ccaList.size());
 		
 		// Test that after removing an item, the size of the list is 1 - normal
-		C206_CaseStudy.deleteCCA(ccaList, cca1.getCCAID());
+		C206_CaseStudy.doDeleteCCA(ccaList, cca1.getCCAID());
 		assertEquals("Test that CCA arrayList size is 1", 1, ccaList.size());
 	}
 	
