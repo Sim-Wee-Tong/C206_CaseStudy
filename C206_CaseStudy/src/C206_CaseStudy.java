@@ -29,10 +29,10 @@ public class C206_CaseStudy {
 			ccaList.add(new CCA(1, "Soccer", "Kicking ball around", 0, "Wednesday", "3:00pm-4:00pm","School field","Mr Severus Tay"));
 			ccaList.add(new CCA(2, "Bakery", "baking", 0, "Tuesday", "3:00pm-4:00pm","BLK D 03-22","Ms Serious Tay"));
 			
-			categoryList.add(new CCAcategory("Sports"));
-			categoryList.add(new CCAcategory("Art"));
-			categoryList.add(new CCAcategory("Music"));
-			categoryList.add(new CCAcategory("Food"));
+			categoryList.add(new CCAcategory("Sports", 1));
+			categoryList.add(new CCAcategory("Art", 2));
+			categoryList.add(new CCAcategory("Music", 3));
+			categoryList.add(new CCAcategory("Food", 4));
 			
 			int role = 0;
 			
@@ -557,7 +557,7 @@ public class C206_CaseStudy {
 	public static String retrieveAllCategories(ArrayList<CCAcategory> categoryList) {
 		String output = "";
 		for (int i = 0; i < categoryList.size(); i++) {
-			output += String.format("%s\n", categoryList.get(i).getCategory());
+			output += String.format("%d %s\n", categoryList.get(i).getCategoryID(), categoryList.get(i).getCategoryName());
 		}
 		return output;
 	}
@@ -570,8 +570,9 @@ public class C206_CaseStudy {
 	
 	// =============== ADD CATEGORY ===============
 	public static CCAcategory inputCategory() {
-		String category = Helper.readString("Enter category to add > ");
-		CCAcategory c = new CCAcategory(category);
+		int categoryId = Helper.readInt("Enter category id to add > ");
+		String categoryName = Helper.readString("Enter category name to add > ");
+		CCAcategory c = new CCAcategory(categoryName, categoryId);
 		return c;
 	}
 	public static void addCategory(ArrayList<CCAcategory> categoryList, CCAcategory c) {
@@ -580,11 +581,11 @@ public class C206_CaseStudy {
 	}
 	
 	// =============== DELETE CATEGORY ===============
-	public static boolean doDeleteCategory(ArrayList<CCAcategory> categoryList, String category) {
+	public static boolean doDeleteCategory(ArrayList<CCAcategory> categoryList, int categoryID) {
 		Boolean isDeleted = false;
 		for (int i = 0; i < categoryList.size(); i++) {
-			String ccaCategory = categoryList.get(i).getCategory();
-			if (category.equalsIgnoreCase(ccaCategory)) {
+			int ccaCategoryId = categoryList.get(i).getCategoryID();
+			if (categoryID == ccaCategoryId) {
 				categoryList.remove(i);
 				isDeleted = true;
 			}
@@ -594,13 +595,13 @@ public class C206_CaseStudy {
 	
 	public static void deleteCategory(ArrayList<CCAcategory> categoryList) {
 		C206_CaseStudy.viewAllCategories(categoryList);
-		String category = Helper.readString("Enter category to delete > ");
-		Boolean isDeleted = doDeleteCategory(categoryList, category);
+		int categoryID = Helper.readInt("Enter category id to delete > ");
+		Boolean isDeleted = doDeleteCategory(categoryList, categoryID);
 
 		if (isDeleted == false) {
 			System.out.println("There is no such category");
 		} else {
-			System.out.println("Category '" + category + "' deleted");
+			System.out.println("Category deleted");
 		}
 	}
 	
