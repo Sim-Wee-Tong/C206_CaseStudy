@@ -1,4 +1,4 @@
-mport static org.junit.Assert.*;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
@@ -290,6 +290,35 @@ public class C206_CaseStudyTest {
 				s2.getParentEmail(), s2.getContactNum(), s2.getCCA(), s2.getCCAID());
 		assertEquals("Test that retrieveStudentDetails", testOutput, allStudent2); 
 		
+	}
+	// type in 20123 for it to work
+	@Test
+	public  void joinCCAg() {
+		 
+	    soccerList.add(s1);
+		int input = Helper.readInt("Please enter the student ID to remove");
+		for (int i = 0; i < soccerList.size(); i++) {
+			if (soccerList.get(i).getStudentID() == input) {
+				
+				
+				if (soccerList.get(i).getStudentID() == input) {
+					
+					soccerList.remove(i);
+				
+				
+				
+					System.out.println("Deletion of student "+ input +" is successful!");
+					
+
+				}
+				
+			else {
+				System.out.println("Student does not exist in the CCA!");
+			}
+		}
+	}
+	
+		assertEquals("Test that student is removed", 0,soccerList.size()); 
 	}
 	
 	@After
